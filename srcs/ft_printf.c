@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:35:32 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/05/31 17:07:32 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/05/31 18:53:04 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,25 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 		}
 	}
 
-	choose_conversion(*tab, *format, i);
+	choose_conversion(tab, format, i);
 }
 
 void choose_conversion(t_print *tab, const char *format, int i)
 {
-
+	if (format[i] == 'c')
+		ft_print_char(tab);
+	if (format[i] == 'd' || format[i] == 'i')
+		ft_print_integer(tab);
+	if (format[i] == 'p')
+		ft_print_ptr(tab);
+	if (format[i] == 's')
+		ft_print_str(tab);
+	if (format[i] == 'u')
+		ft_print_unsigned(tab);
+	if (format[i] == 'x')
+		ft_print_downhex(tab);
+	if (format[i] == 'X')
+		ft_print_upperhex(tab);
+	if (format[i] == '%')
+		ft_print_percent(tab);
 }
