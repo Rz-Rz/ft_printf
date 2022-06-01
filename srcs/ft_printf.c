@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:35:32 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/05/31 18:53:04 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/01 16:01:38 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 			i++;
 		}
 		if (format[i] == '-')
+	if (!dest || !src)
+		return (0);
 		{
 			tab->dash = 1;
 			i++;

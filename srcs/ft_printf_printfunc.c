@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:54:19 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/05/31 19:02:29 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/01 15:46:42 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,12 @@ void ft_print_char(t_print *tab)
 {
 	char a;
 
-	a = va_args(tab->args, int); #variadic func
+	a = va_arg(tab->args, int);
+	ft_update_tab(tab, 1); //calculate special cases and length
+	if (tab->width && !tab->dash) //if width and not - flag 
+		ft_right_cs(tab, 0); //Handle right alignment
+	tab->tl += write(1, &a, 1); //print char
+	if (tab->width && tab->dash) //if width and - flag
+		ft_left_cs(tab, 0);
+
 }
