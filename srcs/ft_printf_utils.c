@@ -6,9 +6,11 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 10:57:43 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/05/31 11:01:57 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/06 13:45:48 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../ft_printf.h"
 
 int check_flags(char c)
 {
@@ -32,4 +34,22 @@ int check_flags(char c)
 		return (1);
 	else 
 		return (0);
+}
+
+void	ft_bzero(char *s, size_t n)
+{
+	ft_memset(s, '\0', n);
+}
+
+void	*ft_memset(char *s, int c, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)s)[i] = c;
+		i++;
+	}
+	return (s);
 }
