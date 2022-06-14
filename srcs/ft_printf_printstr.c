@@ -6,11 +6,12 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/12 18:36:27 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/14 20:28:58 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 
 void ft_printstr(t_print *tab)
@@ -24,14 +25,22 @@ void ft_printstr(t_print *tab)
 		str = "(null)";
 	len = ft_strlen(str);
 	i = 0;
-	if (tab->precision != -1 && tab->precision < len)
-		len = tab->precision;
-	if (tab->width > len)
-		ft_print_width(tab, len);
+	if (tab->minwidth && tab->minwidth < len)
+		len = tab->minwidth;
+	if (tab->maxwidth > len && !tab->dash)
+	{
+		tab->maxwidth -= len;
+		ft_strwidth(tab);
+	}
 	while (i < len)
 	{
-		ft_putchar(str[i]);
+		tab->tl += ft_putchar(str[i]);
 		i++;
+	}
+	if (tab->maxwidth > len && tab->dash)
+	{
+		tab->maxwidth -= len;
+		ft_strwidth(tab);
 	}
 }
 
@@ -53,10 +62,10 @@ int ft_putstr(char *s)
 
 int ft_strlen(char *s)
 {
-		int i;
+	char *str;
 
-		i = 0;
-		while (s[i])
-				i++;
-		return (i);
+	str = s;
+		while (*str)
+				str++;
+		return (str - s);
 }

@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:54:19 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/12 18:15:23 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/14 23:52:24 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,19 @@ void ft_print_char(t_print *tab)
 		tab->space_flag = 0;
 	if (tab->pnt)
 		tab->pnt = 0;
-	if (tab->dash && tab->maxwidth)
+	if (tab->dash && tab->maxwidth--)
 	{
 		tab->tl += ft_putchar(a);
 		ft_strwidth(tab);
 		return;
 	}
-	else if (tab->maxwidth && !tab->dash)
+	else if (tab->maxwidth-- && !tab->dash)
 	{
 		ft_strwidth(tab);
 		tab->tl += ft_putchar(a);
 		return;
 	}
 	tab->tl += ft_putchar(a);
-
-
-	/* ft_update_tab(tab, 1); //calculate special cases and length */
-	/* if (tab->width && !tab->dash) //if width and not - flag */ 
-	/* 	ft_right_cs(tab, 0); //Handle right alignment */
-	/* tab->tl += write(1, &a, 1); //print char */
-	/* if (tab->width && tab->dash) //if width and - flag */
-	/* 	ft_left_cs(tab, 0); */
-
 }
 
 void ft_strwidth(t_print *tab)
@@ -57,15 +48,15 @@ void ft_strwidth(t_print *tab)
 	i = 0;
 	j = 0;
 	k = 0;
-	str = ft_strnew(tab->maxwidth - 1);
-	while (i < tab->maxwidth - 1)
+	str = ft_strnew(tab->maxwidth);
+	while (i < tab->maxwidth)
 	{
 		str[i] = ' ';
 		i++;
 	}
 	if (tab->zero_flag)
 	{
-		while (j < tab->maxwidth - 1)
+		while (j < tab->maxwidth)
 		{
 			str[j] = '0';
 			j++;

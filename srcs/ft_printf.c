@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 14:35:32 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/12 18:25:17 by kdhrif           ###   ########.fr       */
+/*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
+/*   Updated: 2022/06/14 20:33:12 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
 #include <stdio.h>
+#include "../ft_printf.h"
 
 t_print *ft_initialise_tab(t_print *tab)
 {
@@ -71,12 +71,15 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 			{
 				if (format[i] == '0' && format[i - 1] == '%' && i++)
 					tab->zero_flag = 1;
-				while(ft_isnum(format[i]) && !tab->pnt)
+				if (!tab->pnt)
 				{
-					nb[j] = format[i];
-					i++ && j++;
+					while(ft_isnum(format[i]))
+					{
+						nb[j] = format[i];
+						i++ && j++;
+					}
+					tab->maxwidth = ft_atoi(nb);
 				}
-				tab->maxwidth = ft_atoi(nb);
 				if (format[i] == '.' || tab->pnt)
 				{
 					j = 0;
@@ -128,7 +131,7 @@ void choose_conversion(t_print *tab, const char *format, int i)
 		/* if (format[i] == 'p') */
 		/* 	ft_print_ptr(tab); */
 		if (format[i] == 's')
-			ft_print_str(tab);
+			ft_printstr(tab);
 		/* if (format[i] == 'u') */
 		/* 	ft_print_unsigned(tab); */
 		/* if (format[i] == 'x') */
@@ -157,8 +160,8 @@ int main()
 		/* printf("\n"); */
 		/* printf("%d", 10); */
 		/* printf("%10s", "Hello"); */
-		res = ft_printf("%-0.10c\n", 'a');
-		res2 = printf("%-0.10c\n", 'a');
+		res = ft_printf("%3.1s\n", "aaa");
+		res2 = printf("%3.1s\n", "aaa");
 
 		printf("res = %d, res2 = %d", res, res2);
 		return (0);
