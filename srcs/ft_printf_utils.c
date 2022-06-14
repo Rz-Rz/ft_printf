@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 10:57:43 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/06 13:45:48 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/12 15:33:52 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,15 @@ void	*ft_memset(char *s, int c, size_t n)
 		i++;
 	}
 	return (s);
+}
+
+char *ft_strnew(size_t size)
+{
+	char *str;
+
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (str == NULL)
+		return (NULL);
+	ft_bzero(str, size + 1);
+	return (str);
 }

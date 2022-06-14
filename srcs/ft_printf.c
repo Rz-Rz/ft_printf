@@ -6,18 +6,19 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:35:32 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/06 21:59:38 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/12 18:25:17 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 t_print *ft_initialise_tab(t_print *tab)
 {
 		tab->maxwidth = 0;
 		tab->minwidth = 0;
 		tab->precision = 0;
-		tab->zero_pdg = 0;
+		tab->zero_flag = 0;
 		tab->pnt = 0;
 		tab->sign = 0;
 		tab->tl = 0;
@@ -60,60 +61,59 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 		char nb[12];
 		int j;
 
-		ft_bzero(nb, 12);
+		ft_bzero(nb, 11);
+		j = 0;
 		while (!check_flags(format[i]))
 		{
-				if (format[i] == '.')
+			if (format[i] == '.' && i++)
+				tab->pnt = 1;
+			if (ft_isnum(format[i]))
+			{
+				if (format[i] == '0' && format[i - 1] == '%' && i++)
+					tab->zero_flag = 1;
+				while(ft_isnum(format[i]) && !tab->pnt)
 				{
-						tab->pnt = 1;
-						i++;
+					nb[j] = format[i];
+					i++ && j++;
 				}
-				j = 0;
-				if (ft_isnum(format[i]))
+				tab->maxwidth = ft_atoi(nb);
+				if (format[i] == '.' || tab->pnt)
 				{
-						if (format[i] == 0 && format[i - 1])
-						while(ft_isnum(format[i]))
-						{
-								nb[j] = format[i];
-								i++ && j++;
-						}
-						tab->maxwidth = ft_atoi(nb);
-						if (format[i] == '.')
-						{
-								j = 0;
-								ft_bzero(nb, 12);
-								while(ft_isnum(format[i]))
-								{
-										nb[j] = format[i];
-										i++ && j++;
-								}
-						}
+					j = 0;
+					ft_bzero(nb, 11);
+					while(ft_isnum(format[i]))
+					{
+						nb[j] = format[i];
+						i++ && j++;
+					}
+					tab->minwidth = ft_atoi(nb);
 				}
-				/* if (format[i] == '-') */
-				/* { */
-				/* 	tab->dash = 1; */
-				/* 	i++; */
-				/* } */
-				/* if (format[i] == '0') */
-				/* { */
-				/* 	tab->zero_pdg = 1; */
-				/* 	i++; */
-				/* } */
-				/* if (format[i] == ' ') */
-				/* { */
-				/* 	tab->space_flag = 1; */
-				/* 	i++; */
-				/* } */
-				/* if (format[i] == '+') */
-				/* { */
-				/* 	tab->sign = 1; */
-				/* 	i++; */
-				/* } */
-				/* if (format[i] == '#') */
-				/* { */
-				/* 	tab->hash = 1; */
-				/* 	i++; */
-				/* } */
+			}
+			if (format[i] == '-')
+			{
+				tab->dash = 1;
+				i++;
+			}
+			if (format[i] == '0')
+			{
+				tab->zero_flag = 1;
+				i++;
+			}
+			if (format[i] == ' ')
+			{
+				tab->space_flag = 1;
+				i++;
+			}
+			/* if (format[i] == '+') */
+			/* { */
+			/* 	tab->sign = 1; */
+			/* 	i++; */
+			/* } */
+			/* if (format[i] == '#') */
+			/* { */
+			/* 	tab->hash = 1; */
+			/* 	i++; */
+			/* } */
 		}
 		choose_conversion(tab, format, i);
 		return (i);
@@ -122,13 +122,13 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 void choose_conversion(t_print *tab, const char *format, int i)
 {
 		if (format[i] == 'c')
-				ft_print_char(tab);
+			ft_print_char(tab);
 		/* if (format[i] == 'd' || format[i] == 'i') */
 		/* 	ft_print_integer(tab); */
 		/* if (format[i] == 'p') */
 		/* 	ft_print_ptr(tab); */
-		/* if (format[i] == 's') */
-		/* 	ft_print_str(tab); */
+		if (format[i] == 's')
+			ft_print_str(tab);
 		/* if (format[i] == 'u') */
 		/* 	ft_print_unsigned(tab); */
 		/* if (format[i] == 'x') */
@@ -157,8 +157,8 @@ int main()
 		/* printf("\n"); */
 		/* printf("%d", 10); */
 		/* printf("%10s", "Hello"); */
-		res = ft_printf("%c\n", 'a');
-		res2 = printf("%c\n", 'a');
+		res = ft_printf("%-0.10c\n", 'a');
+		res2 = printf("%-0.10c\n", 'a');
 
 		printf("res = %d, res2 = %d", res, res2);
 		return (0);
