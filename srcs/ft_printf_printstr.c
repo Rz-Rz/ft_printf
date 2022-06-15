@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/14 20:28:58 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/15 15:05:33 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void ft_printstr(t_print *tab)
 		str = "(null)";
 	len = ft_strlen(str);
 	i = 0;
+	if (tab->zero_flag || tab->hash)
+	{
+		tab->zero_flag = 0;
+		tab->hash = 0;
+	}
 	if (tab->minwidth && tab->minwidth < len)
 		len = tab->minwidth;
 	if (tab->maxwidth > len && !tab->dash)
