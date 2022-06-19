@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/15 16:28:20 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/15 17:57:23 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	*ft_memset(char *s, int c, size_t n);
 void ft_strwidth(t_print *tab);
 void ft_printstr(t_print *tab);
 void ft_print_integer(t_print *tab);
+void ft_print_int_right(t_print *tab, int nb, int len);
+void ft_print_int_left(t_print *tab, int nb, int len);
 
-int ft_putnbr(int len, int nb);
+int ft_putnbr(int nb);
 int ft_printf(const char *format, ...);
 int ft_eval_format(t_print *tab, const char *format, int i);
 int check_flags(char c);
