@@ -17,8 +17,8 @@ void ft_print_char(t_print *tab)
 	char a;
 
 	a = va_arg(tab->args, int);
-	if (tab->zero_flag)
-		tab->zero_flag = 0;
+	if (tab->zero)
+		tab->zero = 0;
 	if (tab->space_flag)
 		tab->space_flag = 0;
 	if (tab->pnt)
@@ -54,7 +54,7 @@ void ft_strwidth(t_print *tab)
 		str[i] = ' ';
 		i++;
 	}
-	if (tab->zero_flag)
+	if (tab->zero)
 	{
 		while (j < tab->maxwidth)
 		{

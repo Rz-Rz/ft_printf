@@ -6,20 +6,21 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/15 17:57:23 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/20 14:39:32 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 typedef struct s_struct {
   va_list args;
   int maxwidth;
   int minwidth;
   int precision;
-  int zero_flag;
+  int zero;
   int pnt;
   int dash;
   int tl;
@@ -40,8 +41,8 @@ void ft_printstr(t_print *tab);
 void ft_print_integer(t_print *tab);
 void ft_print_int_right(t_print *tab, int nb, int len);
 void ft_print_int_left(t_print *tab, int nb, int len);
+void ft_putnbr(int nb, t_print *tab);
 
-int ft_putnbr(int nb);
 int ft_printf(const char *format, ...);
 int ft_eval_format(t_print *tab, const char *format, int i);
 int check_flags(char c);

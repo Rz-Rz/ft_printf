@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/15 21:33:24 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:30:51 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void ft_print_integer(t_print *tab)
 
 	nb = va_arg(tab->args, int);
 	len = ft_intlen(nb);
-	if (tab->maxwidth > 0 && tab->maxwidth > len)
+	if (tab->zero && tab->dash)
+		tab->zero = 0;
+	if ((tab->maxwidth > 0 && tab->maxwidth > len) || (tab->minwidth > 0 && tab->minwidth > len))
 	{
 		if (tab->dash == 1)
 			ft_print_int_left(tab, nb, len);
@@ -28,32 +30,25 @@ void ft_print_integer(t_print *tab)
 			ft_print_int_right(tab, nb, len);
 	}
 	else
-		ft_putnbr(nb);
+		ft_putnbr(nb, tab);
 }
 
-
-int ft_putnbr(int nb)
+void ft_putnbr(int nb, t_print *tab)
 {
-	int i;
-	int len;
-
-	len = 0;
-	if (nb == 0 && ++len)
-		ft_putchar('0');
+	if (nb == -2147483648)
+		tab->tl += ft_putstr("-2147483648");
 	if (nb < 0)
 	{
-		ft_putchar('-');
 		nb = -nb;
-		len++;
+		tab->tl += ft_putchar('-');
 	}
-	i = 0;
-	while (nb)
+	else if (nb >= 10)
 	{
-		ft_putchar(nb % 10 + '0');
-		nb = nb / 10;
-		i++ && ++len;
+		ft_putnbr(nb / 10, tab);
+		tab->tl += ft_putchar(nb % 10 + '0');
 	}
-	return (len);
+	else 
+		tab->tl += ft_putchar(nb + '0');
 }
 
 int ft_intlen(int nb)
@@ -81,19 +76,40 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 	int i;
 
 	i = 0;
-	if (tab->zero_flag == 1 && !tab->pnt)
+	if (tab->pnt && tab->minwidth > tab->maxwidth)
+		while (i < tab->minwidth - len)
+		{
+			tab->tl += ft_putchar('0');
+			i++;
+		}
+	else if (tab->pnt && tab->minwidth < tab->maxwidth)
+	{
+		while (i < tab->maxwidth - tab->minwidth)
+		{
+			tab->tl += ft_putchar(' ');
+			i++;
+		}
+		i = 0;
+		while (i < tab->minwidth - len)
+		{
+			tab->tl += ft_putchar('0');
+			i++;
+		}
+
+	}
+	else if (tab->zero)
 		while (i < tab->maxwidth - len)
 		{
-			tab->tl = ft_putchar('0');
+			tab->tl += ft_putchar('0');
 			i++;
 		}
 	else
 		while (i < tab->maxwidth - len)
 		{
-			tab->tl = ft_putchar(' ');
+			tab->tl += ft_putchar(' ');
 			i++;
 		}
-	tab->tl += ft_putnbr(nb);
+	ft_putnbr(nb, tab);
 }
 
 void ft_print_int_left(t_print *tab, int nb, int len)
@@ -101,17 +117,17 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 	int i;
 
 	i = 0;
-	tab->tl += ft_putnbr(nb);
-	if (tab->zero_flag == 1 && !tab->pnt)
-		while (i < tab->maxwidth - len)
+	ft_putnbr(nb, tab);
+	if (tab->zero || tab->pnt)
+		while (i < tab->minwidth - len)
 		{
-			tab->tl = ft_putchar('0');
+			tab->tl += ft_putchar('0');
 			i++;
 		}
 	else
 		while (i < tab->maxwidth - len)
 		{
-			tab->tl = ft_putchar(' ');
+			tab->tl += ft_putchar(' ');
 			i++;
 		}
 }

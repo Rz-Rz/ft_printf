@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/15 15:05:33 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/20 12:26:56 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void ft_printstr(t_print *tab)
 		str = "(null)";
 	len = ft_strlen(str);
 	i = 0;
-	if (tab->zero_flag || tab->hash)
+	if (tab->zero || tab->hash)
 	{
-		tab->zero_flag = 0;
+		tab->zero = 0;
 		tab->hash = 0;
 	}
 	if (tab->minwidth && tab->minwidth < len)
@@ -51,8 +51,7 @@ void ft_printstr(t_print *tab)
 
 int ft_putchar(char c)
 {
-		write(1, &c, 1);
-		return (1);
+	return	(write(1, &c, 1));
 }
 
 int ft_putstr(char *s)

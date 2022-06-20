@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/15 16:38:43 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:34:42 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_print *ft_initialise_tab(t_print *tab)
 		tab->maxwidth = 0;
 		tab->minwidth = 0;
 		tab->precision = 0;
-		tab->zero_flag = 0;
+		tab->zero = 0;
 		tab->pnt = 0;
 		tab->sign = 0;
 		tab->tl = 0;
@@ -33,7 +33,7 @@ t_print *ft_initialise_tab(t_print *tab)
 int ft_printf(const char *format, ...)
 {
 		int i;
-		int ret;
+		long ret;
 		t_print *tab;
 
 		tab = malloc(sizeof(t_print));
@@ -52,6 +52,8 @@ int ft_printf(const char *format, ...)
 		}
 		va_end(tab->args);
 		ret += tab->tl;
+		if (ret > 2147483647 || ret < -2147483648)
+				return (-1);
 		free(tab);
 		return (ret);
 }
@@ -70,7 +72,7 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 			if (ft_isnum(format[i]))
 			{
 				if (format[i] == '0' && format[i - 1] == '%' && i++)
-					tab->zero_flag = 1;
+					tab->zero = 1;
 				if (!tab->pnt)
 				{
 					while(ft_isnum(format[i]))
@@ -99,7 +101,7 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 			}
 			if (format[i] == '0')
 			{
-				tab->zero_flag = 1;
+				tab->zero = 1;
 				i++;
 			}
 			if (format[i] == ' ')
@@ -126,8 +128,8 @@ void choose_conversion(t_print *tab, const char *format, int i)
 {
 		if (format[i] == 'c')
 			ft_print_char(tab);
-		/* if (format[i] == 'd' || format[i] == 'i') */
-		/* 	ft_print_integer(tab); */
+		if (format[i] == 'd' || format[i] == 'i')
+			ft_print_integer(tab);
 		/* if (format[i] == 'p') */
 		/* 	ft_print_ptr(tab); */
 		if (format[i] == 's')
@@ -160,8 +162,8 @@ int main()
 		/* printf("\n"); */
 		/* printf("%d", 10); */
 		/* printf("%10s", "Hello"); */
-		/* res = ft_printf("\n", ); */
-		res2 = printf("%.d\n", 2);
+		res = ft_printf("%-100.00d\n", 20);
+		res2 = printf("%-100.00d\n", 20);
 
 		printf("res = %d, res2 = %d", res, res2);
 		return (0);
