@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/20 16:34:42 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/22 17:44:34 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 					ft_bzero(nb, 11);
 					while(ft_isnum(format[i]))
 					{
+						/* while (format[i] == '0') */
+						/* 	i++; */
+						/* if (!ft_isnum(format[i])) */
+						/* 	break; */
 						nb[j] = format[i];
 						i++ && j++;
 					}
@@ -162,10 +166,9 @@ int main()
 		/* printf("\n"); */
 		/* printf("%d", 10); */
 		/* printf("%10s", "Hello"); */
-		res = ft_printf("%-100.00d\n", 20);
-		res2 = printf("%-100.00d\n", 20);
+		res = ft_printf("\n",  20);
+		res2 = printf("\n",  20);
 
 		printf("res = %d, res2 = %d", res, res2);
 		return (0);
 }
-

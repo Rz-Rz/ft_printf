@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/20 16:30:51 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/22 17:37:31 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void ft_print_integer(t_print *tab)
 	nb = va_arg(tab->args, int);
 	len = ft_intlen(nb);
 	if (tab->zero && tab->dash)
+		tab->zero = 0;
+	if (tab->zero && tab->pnt)
 		tab->zero = 0;
 	if ((tab->maxwidth > 0 && tab->maxwidth > len) || (tab->minwidth > 0 && tab->minwidth > len))
 	{
@@ -78,37 +80,22 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 	i = 0;
 	if (tab->pnt && tab->minwidth > tab->maxwidth)
 		while (i < tab->minwidth - len)
-		{
-			tab->tl += ft_putchar('0');
-			i++;
-		}
+			i += ft_print_zero(tab);
 	else if (tab->pnt && tab->minwidth < tab->maxwidth)
 	{
 		while (i < tab->maxwidth - tab->minwidth)
-		{
-			tab->tl += ft_putchar(' ');
-			i++;
-		}
+			i += ft_print_spaces(tab);
 		i = 0;
 		while (i < tab->minwidth - len)
-		{
-			tab->tl += ft_putchar('0');
-			i++;
-		}
+			i += ft_print_zero(tab);
 
 	}
 	else if (tab->zero)
 		while (i < tab->maxwidth - len)
-		{
-			tab->tl += ft_putchar('0');
-			i++;
-		}
+			i += ft_print_zero(tab);
 	else
 		while (i < tab->maxwidth - len)
-		{
-			tab->tl += ft_putchar(' ');
-			i++;
-		}
+			i += ft_print_spaces(tab);
 	ft_putnbr(nb, tab);
 }
 
@@ -117,17 +104,23 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 	int i;
 
 	i = 0;
-	ft_putnbr(nb, tab);
-	if (tab->zero || tab->pnt)
+	if (tab->minwidth > len) 
+	{
 		while (i < tab->minwidth - len)
-		{
-			tab->tl += ft_putchar('0');
-			i++;
-		}
-	else
-		while (i < tab->maxwidth - len)
-		{
-			tab->tl += ft_putchar(' ');
-			i++;
-		}
+			i += ft_print_zero(tab);
+		ft_putnbr(nb, tab);
+		i = 0;
+		while (i < tab->maxwidth - tab->minwidth)
+			i += ft_print_spaces(tab);
+	}
+	else {
+
+		ft_putnbr(nb, tab);
+		if (tab->zero || (tab->pnt && tab->minwidth != 0))
+			while (i < tab->minwidth - len)
+			i += ft_print_zero(tab);
+		else
+			while (i < tab->maxwidth - len)
+			i += ft_print_spaces(tab);
+	}
 }

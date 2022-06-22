@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/20 14:39:32 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/22 17:29:25 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ int ft_isnum(char c);
 int	ft_atoi(const char *nptr);
 int ft_strlen(char *s);
 int ft_intlen(int nb);
+int ft_print_spaces(t_print *tab);
+int ft_print_zero(t_print *tab);
 
 char *ft_strnew(size_t size);
