@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/22 17:29:25 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/22 18:00:49 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_struct {
   int dash;
   int tl;
   int sign;
+  int is_neg;
   int is_zero;
   int perc;
   int space_flag;

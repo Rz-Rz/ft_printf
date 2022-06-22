@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/22 17:37:31 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/22 18:29:13 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void ft_print_integer(t_print *tab)
 		tab->zero = 0;
 	if (tab->zero && tab->pnt)
 		tab->zero = 0;
+	if (tab->sign)
+		tab->minwidth--;
+	if (nb < 0)
+		tab->is_neg = 1;
 	if ((tab->maxwidth > 0 && tab->maxwidth > len) || (tab->minwidth > 0 && tab->minwidth > len))
 	{
 		if (tab->dash == 1)
@@ -44,7 +48,17 @@ void ft_putnbr(int nb, t_print *tab)
 		nb = -nb;
 		tab->tl += ft_putchar('-');
 	}
-	else if (nb >= 10)
+	else if (tab->sign == 1 && !tab->is_neg)
+	{
+		tab->tl += ft_putchar('+');
+		tab->sign--; 
+	}
+	if (tab->space_flag == 1 && !tab->is_neg)
+	{
+		tab->tl += ft_putchar(' ');
+		tab->space_flag--;
+	}
+	if (nb >= 10)
 	{
 		ft_putnbr(nb / 10, tab);
 		tab->tl += ft_putchar(nb % 10 + '0');

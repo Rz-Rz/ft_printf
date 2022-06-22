@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/22 17:44:34 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/22 18:28:38 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_print *ft_initialise_tab(t_print *tab)
 		tab->perc = 0;
 		tab->space_flag = 0;
 		tab->hash = 0;
+		tab->is_neg = 0;
 		return (tab);
 }
 
@@ -113,11 +114,11 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 				tab->space_flag = 1;
 				i++;
 			}
-			/* if (format[i] == '+') */
-			/* { */
-			/* 	tab->sign = 1; */
-			/* 	i++; */
-			/* } */
+			if (format[i] == '+')
+			{
+				tab->sign = 1;
+				i++;
+			}
 			/* if (format[i] == '#') */
 			/* { */
 			/* 	tab->hash = 1; */
@@ -166,8 +167,8 @@ int main()
 		/* printf("\n"); */
 		/* printf("%d", 10); */
 		/* printf("%10s", "Hello"); */
-		res = ft_printf("\n",  20);
-		res2 = printf("\n",  20);
+		res = ft_printf("%+d\n", 200000);
+		res2 = printf("%+d\n", 200000);
 
 		printf("res = %d, res2 = %d", res, res2);
 		return (0);
