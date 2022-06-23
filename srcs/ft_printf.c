@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/23 15:23:36 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/23 15:46:49 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ int main()
 {
 		int res = 0;
 		int res2 = 0;
+		char *str = "Hello World!";
 		/* printf("x%5dx", 10); */
 		/* printf("\n"); */
 		/* printf("x%5dx", 123456789); */
@@ -167,8 +168,8 @@ int main()
 		/* printf("\n"); */
 		/* printf("%d", 10); */
 		/* printf("%10s", "Hello"); */
-		res = ft_printf("%#d\n", 200000);
-		res2 = printf("%#d\n", 200000);
+		/* res = ft_printf("%p\n", str); */
+		res2 = printf("%p\n", str);
 
 		printf("res = %d, res2 = %d", res, res2);
 		return (0);
