@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/22 18:28:38 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/23 15:23:36 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,11 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 				tab->sign = 1;
 				i++;
 			}
-			/* if (format[i] == '#') */
-			/* { */
-			/* 	tab->hash = 1; */
-			/* 	i++; */
-			/* } */
+			if (format[i] == '#')
+			{
+				tab->hash = 1;
+				i++;
+			}
 		}
 		choose_conversion(tab, format, i);
 		return (i);
@@ -135,8 +135,8 @@ void choose_conversion(t_print *tab, const char *format, int i)
 			ft_print_char(tab);
 		if (format[i] == 'd' || format[i] == 'i')
 			ft_print_integer(tab);
-		/* if (format[i] == 'p') */
-		/* 	ft_print_ptr(tab); */
+		if (format[i] == 'p')
+			ft_print_ptr(tab);
 		if (format[i] == 's')
 			ft_printstr(tab);
 		/* if (format[i] == 'u') */
@@ -159,7 +159,7 @@ int main()
 		/* printf("\n"); */
 		/* printf("x%5dx", 123456789); */
 		/* printf("\n"); */
-		/* printf("x%-5dx", 10); */
+		/* printf("x%-5dxc", 10); */
 		/* printf("\n"); */
 		/* printf("x%-5dx", 123456789); */
 		/* printf("\n"); */
@@ -167,8 +167,8 @@ int main()
 		/* printf("\n"); */
 		/* printf("%d", 10); */
 		/* printf("%10s", "Hello"); */
-		res = ft_printf("%+d\n", 200000);
-		res2 = printf("%+d\n", 200000);
+		res = ft_printf("%#d\n", 200000);
+		res2 = printf("%#d\n", 200000);
 
 		printf("res = %d, res2 = %d", res, res2);
 		return (0);
