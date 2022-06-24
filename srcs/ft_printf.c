@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/24 13:19:00 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/24 22:26:23 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int main()
 {
 		int res = 0;
 		int res2 = 0;
-		char *str = "Hello World!";
+		static char *str = "Hello World!";
 		/* printf("x%5dx", 10); */
 		/* printf("\n"); */
 		/* printf("x%5dx", 123456789); */
