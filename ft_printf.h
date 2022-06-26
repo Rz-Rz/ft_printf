@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/24 22:14:27 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/26 15:08:54 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,12 @@ void ft_print_ptr(t_print *tab);
 void ft_putnbr_hex(unsigned long long n);
 void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr);
 void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr);
+void ft_print_uint(t_print *tab);
+void ft_print_uint_right(t_print *tab, unsigned int nb, int len);
+void ft_print_uint_left(t_print *tab, unsigned int nb, int len);
+void ft_putunbr(unsigned int nb, t_print *tab);
 
+int ft_uintlen(unsigned int nb);
 int ft_hexlen(unsigned long long n);
 int ft_printf(const char *format, ...);
 int ft_eval_format(t_print *tab, const char *format, int i);

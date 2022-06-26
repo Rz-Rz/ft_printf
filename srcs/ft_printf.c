@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/24 22:26:23 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/26 15:20:35 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,12 +139,12 @@ void choose_conversion(t_print *tab, const char *format, int i)
 			ft_print_ptr(tab);
 		if (format[i] == 's')
 			ft_printstr(tab);
-		/* if (format[i] == 'u') */
-		/* 	ft_print_unsigned(tab); */
-		/* if (format[i] == 'x') */
-		/* 	ft_print_downhex(tab); */
-		/* if (format[i] == 'X') */
-		/* 	ft_print_upperhex(tab); */
+		if (format[i] == 'u')
+			ft_print_uint(tab);
+		if (format[i] == 'x')
+			ft_print_downhex(tab);
+		if (format[i] == 'X')
+			ft_print_upperhex(tab);
 		/* if (format[i] == '%') */
 		/* 	ft_print_percent(tab); */
 }
@@ -155,7 +155,8 @@ int main()
 {
 		int res = 0;
 		int res2 = 0;
-		static char *str = "Hello World!";
+		unsigned int a = -1;
+		/* char *str = "Hello World!"; */
 		/* printf("x%5dx", 10); */
 		/* printf("\n"); */
 		/* printf("x%5dx", 123456789); */
@@ -168,8 +169,8 @@ int main()
 		/* printf("\n"); */
 		/* printf("%d", 10); */
 		/* printf("%10s", "Hello"); */
-		res = ft_printf("%p\n", str);
-		res2 = printf("%p\n", str);
+		/* res = ft_printf("%15u\n", -9); */
+		res2 = printf("%x\n", );
 
 		printf("res = %d, res2 = %d", res, res2);
 		return (0);
