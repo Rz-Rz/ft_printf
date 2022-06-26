@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/26 15:08:54 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/26 18:54:00 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_struct {
   int sign;
   int is_neg;
   int is_zero;
-  int perc;
+  int upper;
   int space_flag;
   int hash;
 
@@ -44,13 +44,16 @@ void ft_print_int_right(t_print *tab, int nb, int len);
 void ft_print_int_left(t_print *tab, int nb, int len);
 void ft_putnbr(int nb, t_print *tab);
 void ft_print_ptr(t_print *tab);
-void ft_putnbr_hex(unsigned long long n);
+void ft_putnbr_hex(unsigned long long n, t_print *tab);
 void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr);
 void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr);
 void ft_print_uint(t_print *tab);
 void ft_print_uint_right(t_print *tab, unsigned int nb, int len);
 void ft_print_uint_left(t_print *tab, unsigned int nb, int len);
 void ft_putunbr(unsigned int nb, t_print *tab);
+void ft_print_upperhex(t_print *tab);
+void ft_print_downhex(t_print *tab);
+void	ft_print_percent(t_print *tab);
 
 int ft_uintlen(unsigned int nb);
 int ft_hexlen(unsigned long long n);
