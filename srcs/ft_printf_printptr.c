@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/30 12:09:44 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/30 14:00:51 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
 {
 	int i;
 
+	i = 0;
 	if (ptr == 0)
 	{
 		tab->tl += ft_putstr("(nil)");
@@ -93,7 +94,6 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
 		tab->tl += ft_putstr("0x");
 		ft_putnbr_hex(ptr, tab);
 		tab->tl += len;
-		i = 0;
 		while (i < tab->maxwidth - (len + 2))
 			i += ft_print_spaces(tab);
 	}
