@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:54:19 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/14 23:52:24 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/30 11:06:10 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ void ft_print_char(t_print *tab)
 		tab->space_flag = 0;
 	if (tab->pnt)
 		tab->pnt = 0;
-	if (tab->dash && tab->maxwidth--)
+	if (tab->dash && tab->maxwidth)
 	{
+		tab->maxwidth--;
 		tab->tl += ft_putchar(a);
 		ft_strwidth(tab);
 		return;
 	}
-	else if (tab->maxwidth-- && !tab->dash)
+	else if (!tab->dash && tab->maxwidth)
 	{
+		tab->maxwidth--;
 		ft_strwidth(tab);
 		tab->tl += ft_putchar(a);
 		return;
@@ -42,12 +44,10 @@ void ft_strwidth(t_print *tab)
 {
 	int i;
 	int j;
-	int k;
 	char *str;
 
 	i = 0;
 	j = 0;
-	k = 0;
 	str = ft_strnew(tab->maxwidth);
 	while (i < tab->maxwidth)
 	{

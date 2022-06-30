@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/26 18:50:42 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/30 12:34:35 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 					while(ft_isnum(format[i]))
 					{
 						nb[j] = format[i];
-						i++ && j++;
+						i++;
+						j++;
 					}
 					tab->maxwidth = ft_atoi(nb);
 				}
@@ -89,12 +90,9 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 					ft_bzero(nb, 11);
 					while(ft_isnum(format[i]))
 					{
-						/* while (format[i] == '0') */
-						/* 	i++; */
-						/* if (!ft_isnum(format[i])) */
-						/* 	break; */
 						nb[j] = format[i];
-						i++ && j++;
+						i++;
+						j++;
 					}
 					tab->minwidth = ft_atoi(nb);
 				}
@@ -149,29 +147,29 @@ void choose_conversion(t_print *tab, const char *format, int i)
 			ft_print_percent(tab);
 }
 
-#include <stdio.h>
+/* #include <stdio.h> */
 
-int main()
-{
-		int res = 0;
-		int res2 = 0;
-		unsigned int a = 0;
-		/* char *str = "Hello World!"; */
-		/* printf("x%5dx", 10); */
-		/* printf("\n"); */
-		/* printf("x%5dx", 123456789); */
-		/* printf("\n"); */
-		/* printf("x%-5dxc", 10); */
-		/* printf("\n"); */
-		/* printf("x%-5dx", 123456789); */
-		/* printf("\n"); */
-		/* printf("%d", 123456789); */
-		/* printf("\n"); */
-		/* printf("%d", 10); */
-		/* printf("%10s", "Hello"); */
-		res = ft_printf("%x\n", a);
-		res2 = printf("%x\n", a);
-
-		printf("res = %d, res2 = %d", res, res2);
-		return (0);
-}
+/* int main() */
+/* { */
+/* 		int res = 0; */
+/* 		int res2 = 0; */
+/* 		/1* unsigned int a = 0; *1/ */
+/* 		/1* char *str = "Hello World!"; *1/ */
+/* 		/1* printf("x%5dx", 10); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("x%5dx", 123456789); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("x%-5dxc", 10); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("x%-5dx", 123456789); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("%d", 123456789); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("%d", 10); *1/ */
+/* 		/1* res = ft_printf("%%%x %%%X\n", -1, -10); *1/ */
+/* 		/1* res2 = printf("%%%x %%%X\n", -1, -10); *1/ */
+/* 		res = ft_printf(); */
+/* 		res2 = printf(); */
+/* 		printf("res = %d, res2 = %d", res, res2); */
+/* 		return (0); */
+/* } */

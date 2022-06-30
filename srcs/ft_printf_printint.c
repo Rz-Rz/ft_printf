@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/22 18:29:13 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/30 12:21:02 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void ft_print_integer(t_print *tab)
 void ft_putnbr(int nb, t_print *tab)
 {
 	if (nb == -2147483648)
+	{
 		tab->tl += ft_putstr("-2147483648");
+		return ;
+	}
 	if (nb < 0)
 	{
 		nb = -nb;

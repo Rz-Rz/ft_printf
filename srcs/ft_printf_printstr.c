@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/20 12:26:56 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/30 10:57:29 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int ft_putstr(char *s)
 		int i;
 
 		i = 0;
+		if (!s)
+			return (0);
 		while (s[i])
 				write(1, &s[i++], 1);
 		return (i);

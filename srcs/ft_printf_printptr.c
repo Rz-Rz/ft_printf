@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/26 18:43:52 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/30 12:09:44 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@ void ft_print_ptr(t_print *tab)
 	}
 	else 
 	{
-		tab->tl += ft_putstr("0x");
-		ft_putnbr_hex(ptr, tab);
-		tab->tl += len;
+		if (ptr == 0)
+			tab->tl += ft_putstr("(nil)");
+		else {
+			tab->tl += ft_putstr("0x");
+			ft_putnbr_hex(ptr, tab);
+			tab->tl += len;
+		}
 	}
 }
 
@@ -77,12 +81,22 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
 {
 	int i;
 
-	tab->tl += ft_putstr("0x");
-	ft_putnbr_hex(ptr, tab);
-	tab->tl += len;
-	i = 0;
-	while (i < tab->maxwidth - (len + 2))
-		i += ft_print_spaces(tab);
+	if (ptr == 0)
+	{
+		tab->tl += ft_putstr("(nil)");
+		while (i < tab->maxwidth - 5)
+			i += ft_print_spaces(tab);
+
+	}
+	else 
+	{
+		tab->tl += ft_putstr("0x");
+		ft_putnbr_hex(ptr, tab);
+		tab->tl += len;
+		i = 0;
+		while (i < tab->maxwidth - (len + 2))
+			i += ft_print_spaces(tab);
+	}
 }
 
 void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr)
@@ -90,9 +104,17 @@ void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr)
 	int i;
 
 	i = 0;
-	while (i < tab->maxwidth - (len + 2))
-		i += ft_print_spaces(tab);
-	tab->tl += ft_putstr("0x");
-	ft_putnbr_hex(ptr, tab);
-	tab->tl += len;
+	if (ptr == 0)
+	{
+		while (i < tab->maxwidth - 5)
+			i += ft_print_spaces(tab);
+		tab->tl += ft_putstr("(nil)");
+	}
+	else {
+		while (i < tab->maxwidth - (len + 2))
+			i += ft_print_spaces(tab);
+		tab->tl += ft_putstr("0x");
+		ft_putnbr_hex(ptr, tab);
+		tab->tl += len;
+	}
 }

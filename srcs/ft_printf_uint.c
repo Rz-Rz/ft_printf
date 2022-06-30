@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:30:41 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/26 15:55:15 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/06/26 19:24:03 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void ft_print_uint(t_print *tab)
 		tab->zero = 0;
 	if (tab->sign)
 		tab->minwidth--;
-	if (nb < 0)
-		tab->is_neg = 1;
 	if ((tab->maxwidth > 0 && tab->maxwidth > len) || (tab->minwidth > 0 && tab->minwidth > len))
 	{
 		if (tab->dash)
