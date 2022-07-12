@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/30 14:00:51 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/12 16:28:44 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ int ft_hexlen(unsigned long long n)
 void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
 {
 	int i;
+	int hash;
 
+	hash = 0;
 	i = 0;
 	if (ptr == 0)
 	{
@@ -91,10 +93,14 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
 	}
 	else 
 	{
-		tab->tl += ft_putstr("0x");
+		if (tab->hash)
+		{
+			hash = 2;
+			tab->tl += ft_putstr("0x");
+		}
 		ft_putnbr_hex(ptr, tab);
 		tab->tl += len;
-		while (i < tab->maxwidth - (len + 2))
+		while (i < tab->maxwidth - (len + hash))
 			i += ft_print_spaces(tab);
 	}
 }
@@ -102,6 +108,7 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
 void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr)
 {
 	int i;
+	int hash = 0;
 
 	i = 0;
 	if (ptr == 0)
@@ -111,9 +118,12 @@ void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr)
 		tab->tl += ft_putstr("(nil)");
 	}
 	else {
-		while (i < tab->maxwidth - (len + 2))
+		if (tab->hash)
+			hash = 2;
+		while (i < tab->maxwidth - (len + hash))
 			i += ft_print_spaces(tab);
-		tab->tl += ft_putstr("0x");
+		if (hash)
+			tab->tl += ft_putstr("0x");
 		ft_putnbr_hex(ptr, tab);
 		tab->tl += len;
 	}
