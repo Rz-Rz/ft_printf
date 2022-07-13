@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/30 10:57:29 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:23:51 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void ft_printstr(t_print *tab)
 		tab->maxwidth -= len;
 		ft_strwidth(tab);
 	}
+	if (tab->pnt && tab->minwidth == 0 && tab->maxwidth == 0)
+		return;
 	while (i < len)
 	{
 		tab->tl += ft_putchar(str[i]);

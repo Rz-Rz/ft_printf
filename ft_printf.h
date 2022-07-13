@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/29 16:40:56 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/13 18:35:33 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+
+#define INT_MAX 2147483647
+#define INT_MIN -2147483648
+#define UINT_MAX 4294967295
+#define UINT_MIN 0
+#define LONG_MAX 9223372036854775807
+#define LONG_MIN -9223372036854775808
+#define ULONG_MAX 18446744073709551615
+#define ULONG_MIN 0
+#define LLONG_MAX 9223372036854775807
+#define LLONG_MIN -9223372036854775808
+#define ULLONG_MAX 18446744073709551615
+#define ULLONG_MIN 0
+#define CHAR_MAX 255
+#define CHAR_MIN 0
+#define UCHAR_MAX 255
+#define UCHAR_MIN 0
+#define SHORT_MAX 32767
+#define SHORT_MIN -32768
+#define USHORT_MAX 65535
+#define USHORT_MIN 0
 
 typedef struct s_struct {
   va_list args;
@@ -26,6 +47,7 @@ typedef struct s_struct {
   int tl;
   int sign;
   int is_neg;
+  int already_neg;
   int is_zero;
   int upper;
   int space_flag;

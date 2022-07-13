@@ -6,22 +6,25 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/12 16:35:48 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/13 19:10:52 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../ft_printf.h"
 
-t_print *ft_initialise_tab(t_print *tab)
+t_print *ft_initialise_tab(t_print *tab, int tl_reset)
 {
+
 		tab->maxwidth = 0;
 		tab->minwidth = 0;
 		tab->precision = 0;
 		tab->zero = 0;
 		tab->pnt = 0;
 		tab->sign = 0;
-		tab->tl = 0;
+		tab->already_neg = 0;
+		if (tl_reset)
+			tab->tl = 0;
 		tab->is_zero = 0;
 		tab->dash = 0;
 		tab->space_flag = 0;
@@ -40,7 +43,7 @@ int ft_printf(const char *format, ...)
 		tab = malloc(sizeof(t_print));
 		if (!tab)
 				return (-1);
-		ft_initialise_tab(tab);
+		ft_initialise_tab(tab, 1);
 		va_start(tab->args, format);
 		i = -1;
 		ret = 0;
@@ -145,31 +148,32 @@ void choose_conversion(t_print *tab, const char *format, int i)
 			ft_print_upperhex(tab);
 		if (format[i] == '%')
 			ft_print_percent(tab);
+		ft_initialise_tab(tab, 0);
 }
 
-#include <stdio.h>
+/* #include <stdio.h> */
 
-int main()
-{
-		int res = 0;
-		int res2 = 0;
-		/* unsigned int a = 0; */
-		/* char *str = "Hello World!"; */
-		/* printf("x%5dx", 10); */
-		/* printf("\n"); */
-		/* printf("x%5dx", 123456789); */
-		/* printf("\n"); */
-		/* printf("x%-5dxc", 10); */
-		/* printf("\n"); */
-		/* printf("x%-5dx", 123456789); */
-		/* printf("\n"); */
-		/* printf("%d", 123456789); */
-		/* printf("\n"); */
-		/* printf("%d", 10); */
-		/* res = ft_printf("%%%x %%%X\n", -1, -10); */
-		/* res2 = printf("%%%x %%%X\n", -1, -10); */
-		res = ft_printf(" %04d \n", -14);
-		res2 = printf(" %04d \n", -14);
-		printf("res = %d, res2 = %d", res, res2);
-		return (0);
-}
+/* int main() */
+/* { */
+/* 		int res = 0; */
+/* 		int res2 = 0; */
+/* 		/1* unsigned int a = 0; *1/ */
+/* 		/1* char *str = "Hello World!"; *1/ */
+/* 		/1* printf("x%5dx", 10); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("x%5dx", 123456789); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("x%-5dxc", 10); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("x%-5dx", 123456789); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("%d", 123456789); *1/ */
+/* 		/1* printf("\n"); *1/ */
+/* 		/1* printf("%d", 10); *1/ */
+/* 		/1* res = ft_printf("%%%x %%%X\n", -1, -10); *1/ */
+/* 		/1* res2 = printf("%%%x %%%X\n", -1, -10); *1/ */
+/* 		res = ft_printf(" %.2x \n", 1); */
+/* 		res2 = printf(" %.2x \n", 1); */
+/* 		printf("res = %d, res2 = %d", res, res2); */
+/* 		return (0); */
+/* } */

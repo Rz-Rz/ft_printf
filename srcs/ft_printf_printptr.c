@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/12 16:28:44 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/13 19:08:11 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,17 @@ void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr)
 	else {
 		if (tab->hash)
 			hash = 2;
-		while (i < tab->maxwidth - (len + hash))
-			i += ft_print_spaces(tab);
+		if (tab->minwidth > len && tab->pnt)
+			while (i < tab->minwidth - (len + hash))
+				i += ft_print_zero(tab);
+		else if (tab->zero) {
+			while (i < tab->maxwidth - (len + hash))
+				i += ft_print_zero(tab);
+		}
+		else {
+			while (i < tab->maxwidth - (len + hash))
+				i += ft_print_spaces(tab);
+		}
 		if (hash)
 			tab->tl += ft_putstr("0x");
 		ft_putnbr_hex(ptr, tab);

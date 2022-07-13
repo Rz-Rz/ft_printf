@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:10:15 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/26 18:48:16 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/13 19:10:09 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_print_downhex(t_print *tab)
 
 	nb = va_arg(tab->args, unsigned int);
 	len = ft_hexlen(nb);
-	if (tab->maxwidth > len)
+	if (tab->maxwidth > len || tab->minwidth > len)
 	{
 		if (tab->dash)
 			ft_print_hex_left(tab, len, nb);
@@ -54,5 +54,4 @@ void ft_print_upperhex(t_print *tab)
 		ft_putnbr_hex(nb, tab);
 		tab->tl += len;
 	}
-
 }
