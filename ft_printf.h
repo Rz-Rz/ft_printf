@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/13 18:35:33 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/15 16:10:06 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_struct {
   int tl;
   int sign;
   int is_neg;
+  int is_ptr;
   int already_neg;
   int is_zero;
   int upper;
@@ -73,8 +74,7 @@ void ft_print_uint(t_print *tab);
 void ft_print_uint_right(t_print *tab, unsigned int nb, int len);
 void ft_print_uint_left(t_print *tab, unsigned int nb, int len);
 void ft_putunbr(unsigned int nb, t_print *tab);
-void ft_print_upperhex(t_print *tab);
-void ft_print_downhex(t_print *tab);
+void ft_print_hex(t_print *tab);
 void	ft_print_percent(t_print *tab);
 
 int ft_uintlen(unsigned int nb);

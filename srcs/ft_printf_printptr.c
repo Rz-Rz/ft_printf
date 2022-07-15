@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/13 19:08:11 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/15 17:29:47 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void ft_print_ptr(t_print *tab)
 	int len;
 
 	len = 0;
+	tab->is_ptr = 1;
 	ptr = va_arg(tab->args, unsigned long long);
 	len = ft_hexlen(ptr);
+
 	if (tab->maxwidth > len)
 	{
 		if (tab->dash)
@@ -43,6 +45,7 @@ void ft_putnbr_hex(unsigned long long n, t_print *tab)
 {
 	if (n >= 16)
 	{
+
 		ft_putnbr_hex(n / 16, tab);
 		ft_putnbr_hex(n % 16, tab);
 	}
@@ -93,10 +96,13 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
 	}
 	else 
 	{
-		if (tab->hash)
+		if (tab->hash || tab->is_ptr)
 		{
 			hash = 2;
-			tab->tl += ft_putstr("0x");
+			if (tab->upper)
+				tab->tl += ft_putstr("0X");
+			else
+				tab->tl += ft_putstr("0x");
 		}
 		ft_putnbr_hex(ptr, tab);
 		tab->tl += len;
@@ -131,8 +137,13 @@ void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr)
 			while (i < tab->maxwidth - (len + hash))
 				i += ft_print_spaces(tab);
 		}
-		if (hash)
-			tab->tl += ft_putstr("0x");
+		if (hash || tab->is_ptr)
+		{
+			if (tab->upper && tab->hash && ptr != 0)
+				tab->tl += ft_putstr("0X");
+			else if (ptr != 0 && tab->hash)
+				tab->tl += ft_putstr("0x");
+		}
 		ft_putnbr_hex(ptr, tab);
 		tab->tl += len;
 	}
