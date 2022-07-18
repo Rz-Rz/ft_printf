@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/15 17:27:51 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:19:40 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 				}
 				if (format[i] == '.' || tab->pnt)
 				{
+
 					j = 0;
 					ft_bzero(nb, 11);
 					while(ft_isnum(format[i]))
@@ -98,7 +99,10 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 						i++;
 						j++;
 					}
-					tab->minwidth = ft_atoi(nb);
+					if (nb[0] == '0')
+						tab->minwidth = ft_atoi("0");
+					else
+						tab->minwidth = ft_atoi(nb);
 				}
 			}
 			if (format[i] == '-')
@@ -176,8 +180,8 @@ int main()
 	/* printf("%d", 10); */
 	/* res = ft_printf("%%%x %%%X\n", -1, -10); */
 	/* res2 = printf("%%%x %%%X\n", -1, -10); */
-	res = ft_printf(" %#x \n", 0);
-	res2 = printf(" %#x \n", 0);
+	res = ft_printf("%-2.7d\n", -2375);
+	res2 = printf("%-2.7d\n", -2375);
 	printf("res = %d, res2 = %d", res, res2);
 	return (0);
 }
