@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/18 15:52:12 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/19 17:00:08 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,18 @@ void ft_printstr(t_print *tab)
 	}
 	if (tab->minwidth && tab->minwidth < len && !isnull)
 		len = tab->minwidth;
-	if (tab->maxwidth > len && !tab->dash && !isnull)
+	printf("len = %d, maxwidth = %d\n", len, tab->maxwidth);
+	if (tab->maxwidth > len && !tab->dash)
 	{
-		tab->maxwidth -= len;
+		if (!isnull)
+			tab->maxwidth -= len;
 		ft_strwidth(tab);
 	}
 	if (tab->pnt && tab->minwidth == 0 && tab->maxwidth == 0)
 		return;
-	while (i < len)
+	while (!tab->dash && i < len)
 	{
-		if (isnull && tab->minwidth < 6 && tab->maxwidth)
+		if (isnull && tab->minwidth && tab->minwidth < 6 && tab->maxwidth)
 		{
 			while (tab->maxwidth)
 			{

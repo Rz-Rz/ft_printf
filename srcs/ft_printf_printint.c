@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/18 14:32:00 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/19 16:33:27 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,9 +143,15 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 	int i;
 
 	i = 0;
+	printf("min %d len %d\n", tab->minwidth, len);
 	if (tab->minwidth > len) 
 	{
-		while (i < tab->minwidth - (len + tab->is_neg))
+		if (nb < 0)
+		{
+			tab->tl += ft_putchar('-');
+			tab->already_neg = 1;
+		}
+		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
 		ft_putnbr(nb, tab);
 		i = 0;
