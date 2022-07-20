@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/20 20:34:17 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/20 21:22:22 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,47 @@ void ft_printstr(t_print *tab)
 	if (tab->zero || tab->hash)
 		ft_reset_str(tab);
 	if (!tab->dash)
-		ft_printstr_norm(tab, str, len);
-	if (tab->maxwidth > len && tab->dash && i != -1)
-		ft_strwidth(tab, tab->maxwidth - len);
+		ft_printstr_right(tab, str, len);
+	if (tab->dash)
+		ft_printstr_left(tab, str, len);
 }
 
-void ft_printstr_norm(t_print *tab, char *str, int len)
+void ft_printstr_left(t_print *tab, char *str, int len)
+{
+	int i;
+
+	i = 0;
+	if (!tab->pnt)
+	{
+		if (tab->maxwidth > len)
+		{
+			tab->tl += ft_putstr(str);
+			ft_strwidth(tab, tab->maxwidth - len);
+		}
+		else 
+			tab->tl += ft_putstr(str);
+	}
+	else if (tab->pnt)
+	{
+		if (tab->maxwidth > len && tab->minwidth >= len)
+		{
+			tab->tl += ft_putstr(str);
+			ft_strwidth(tab, tab->maxwidth - len);
+			return;
+		}
+		else if (tab->minwidth < len)
+		{
+			while (i < tab->minwidth)
+				tab->tl += ft_putchar(str[i++]);
+			ft_strwidth(tab, tab->maxwidth - tab->minwidth);
+		}
+		else if (tab->maxwidth < len && tab->minwidth >= len)
+				tab->tl += ft_putstr(str);
+
+	}
+}
+
+void ft_printstr_right(t_print *tab, char *str, int len)
 {
 	int i;
 
@@ -59,11 +94,13 @@ void ft_printstr_norm(t_print *tab, char *str, int len)
 		}
 		else if (tab->minwidth < len)
 		{
-			ft_strwidth(tab, (tab->maxwidth) - (len - tab->minwidth));
+			ft_strwidth(tab, tab->maxwidth - tab->minwidth);
 			while (i < tab->minwidth)
 				tab->tl += ft_putchar(str[i++]);
 		}
-		/* if (tab->minwidth >= len || (tab->minwidth == 0 && tab->pnt == 0)) */
+		else if (tab->maxwidth < len && tab->minwidth >= len)
+				tab->tl += ft_putstr(str);
+
 	}
 }
 
