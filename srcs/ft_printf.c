@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/19 16:54:02 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/20 20:28:52 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,7 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 						i++;
 						j++;
 					}
-					if (nb[0] == '0')
-						tab->minwidth = ft_atoi("0");
-					else
-						tab->minwidth = ft_atoi(nb);
+					tab->minwidth = ft_atoi(nb);
 				}
 			}
 			if (format[i] == '-')
@@ -180,8 +177,8 @@ int main()
 	/* printf("%d", 10); */
 	/* res = ft_printf("%%%x %%%X\n", -1, -10); */
 	/* res2 = printf("%%%x %%%X\n", -1, -10); */
-	res = ft_printf("%8.5s\n", NULL);
-	res2 = printf("%8.5s\n", NULL);
+	res = ft_printf("%9s\n", "coconut");
+	res2 = printf("%9s\n", "coconut");
 	printf("res = %d, res2 = %d", res, res2);
 	return (0);
 }

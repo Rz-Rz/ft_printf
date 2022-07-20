@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:54:19 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/30 11:06:10 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/20 18:37:58 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ void ft_print_char(t_print *tab)
 	{
 		tab->maxwidth--;
 		tab->tl += ft_putchar(a);
-		ft_strwidth(tab);
+		ft_strwidth(tab, tab->maxwidth);
 		return;
 	}
 	else if (!tab->dash && tab->maxwidth)
 	{
 		tab->maxwidth--;
-		ft_strwidth(tab);
+		ft_strwidth(tab, tab->maxwidth);
 		tab->tl += ft_putchar(a);
 		return;
 	}
 	tab->tl += ft_putchar(a);
 }
 
-void ft_strwidth(t_print *tab)
+void ft_strwidth(t_print *tab, int max)
 {
 	int i;
 	int j;
@@ -48,15 +48,15 @@ void ft_strwidth(t_print *tab)
 
 	i = 0;
 	j = 0;
-	str = ft_strnew(tab->maxwidth);
-	while (i < tab->maxwidth)
+	str = ft_strnew(max);
+	while (i < max)
 	{
 		str[i] = ' ';
 		i++;
 	}
 	if (tab->zero)
 	{
-		while (j < tab->maxwidth)
+		while (j < max)
 		{
 			str[j] = '0';
 			j++;
@@ -64,4 +64,9 @@ void ft_strwidth(t_print *tab)
 	}
 	tab->tl += ft_putstr(str);
 	free(str);
+}
+
+int ft_putchar(char c)
+{
+	return	(write(1, &c, 1));
 }
