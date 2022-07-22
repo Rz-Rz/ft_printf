@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/19 16:33:27 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/21 16:35:21 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,12 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 	}
 	else if (tab->pnt && tab->minwidth < tab->maxwidth)
 	{
-		while (i < tab->maxwidth - (len + tab->is_neg))
-			i += ft_print_spaces(tab);
+		if (tab->minwidth > len)
+			while (i < tab->maxwidth - (len + tab->is_neg + (tab->minwidth - len)))
+				i += ft_print_spaces(tab);
+		else 
+			while (i < tab->maxwidth - (len + tab->is_neg))
+				i += ft_print_spaces(tab);
 		i = 0;
 		while (i < tab->minwidth - (len + tab->is_neg))
 			i += ft_print_zero(tab);
@@ -143,7 +147,6 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 	int i;
 
 	i = 0;
-	printf("min %d len %d\n", tab->minwidth, len);
 	if (tab->minwidth > len) 
 	{
 		if (nb < 0)
@@ -162,10 +165,16 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 
 		ft_putnbr(nb, tab);
 		if (tab->zero || (tab->pnt && tab->minwidth != 0))
+		{
 			while (i < tab->minwidth - (len))
-			i += ft_print_zero(tab);
+				i += ft_print_zero(tab);
+			i = 0;
+			if (tab->maxwidth > len)
+				while (i < tab->maxwidth - (len + tab->is_neg))
+					i += ft_print_spaces(tab);
+		}
 		else
 			while (i < tab->maxwidth - (len + tab->is_neg))
-			i += ft_print_spaces(tab);
+				i += ft_print_spaces(tab);
 	}
 }
