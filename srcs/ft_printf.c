@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/21 16:38:55 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 12:55:28 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,8 @@ int main()
 	/* printf("%d", 10); */
 	/* res = ft_printf("%%%x %%%X\n", -1, -10); */
 	/* res2 = printf("%%%x %%%X\n", -1, -10); */
-	res = ft_printf("%5.d\n", 0);
-	res2 = printf("%5.d\n", 0);
+	res = ft_printf("%8.5x\n", 0);
+	res2 = printf("%8.5x\n", 0);
 	printf("res = %d, res2 = %d", res, res2);
 	return (0);
 }

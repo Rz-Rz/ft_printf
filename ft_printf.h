@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/20 21:23:13 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 12:54:17 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void ft_print_int_left(t_print *tab, int nb, int len);
 void ft_putnbr(int nb, t_print *tab);
 void ft_print_ptr(t_print *tab);
 void ft_putnbr_hex(unsigned long long n, t_print *tab);
-void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr);
-void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr);
+void ft_print_hex_left(t_print *tab, int len, unsigned long long nb);
+void ft_print_hex_right(t_print *tab, int len, unsigned long long nb);
 void ft_print_uint(t_print *tab);
 void ft_print_uint_right(t_print *tab, unsigned int nb, int len);
 void ft_print_uint_left(t_print *tab, unsigned int nb, int len);
@@ -80,6 +80,9 @@ void ft_strcpy(char *dst, const char *src, int n);
 void ft_reset_str(t_print *tab);
 void ft_printstr_right(t_print *tab, char *str, int len);
 void ft_printstr_left(t_print *tab, char *str, int len);
+void ft_printint_zero(t_print *tab, int nb, int len);
+void ft_print_ptr_right(t_print *tab, int len, unsigned long long ptr);
+void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr);
 
 int ft_print_nullstr(t_print *tab);
 int ft_uintlen(unsigned int nb);

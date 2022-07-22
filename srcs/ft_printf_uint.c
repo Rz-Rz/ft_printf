@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:30:41 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/26 19:24:03 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 12:49:01 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,6 @@ void ft_print_uint(t_print *tab)
 		ft_putunbr(nb, tab);
 }
 
-void ft_print_uint_right(t_print *tab, unsigned int nb, int len)
-{
-	int i;
-
-	i = 0;
-	if (tab->pnt && tab->minwidth > tab->maxwidth)
-		while (i < tab->minwidth - len)
-			i += ft_print_zero(tab);
-	else if (tab->pnt && tab->minwidth < tab->maxwidth)
-	{
-		while (i < tab->maxwidth - tab->minwidth)
-			i += ft_print_spaces(tab);
-		i = 0;
-		while (i < tab->minwidth - len)
-			i += ft_print_zero(tab);
-
-	}
-	else if (tab->zero)
-		while (i < tab->maxwidth - len)
-			i += ft_print_zero(tab);
-	else
-		while (i < tab->maxwidth - len)
-			i += ft_print_spaces(tab);
-	ft_putunbr(nb, tab);
-}
 
 void ft_putunbr(unsigned int nb, t_print *tab)
 {
@@ -73,6 +48,12 @@ void ft_putunbr(unsigned int nb, t_print *tab)
 	{
 		tab->tl += ft_putchar(' ');
 		tab->space_flag--;
+	}
+	if (tab->pnt && tab->minwidth == 0 && nb == 0)
+	{
+		if (tab->maxwidth > 0)
+			ft_print_spaces(tab);
+		return;
 	}
 	if (nb >= 10)
 	{
@@ -105,6 +86,11 @@ void ft_print_uint_left(t_print *tab, unsigned int nb, int len)
 	i = 0;
 	if (tab->minwidth > len) 
 	{
+		if (nb < 0)
+		{
+			tab->tl += ft_putchar('-');
+			tab->already_neg = 1;
+		}
 		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
 		ft_putunbr(nb, tab);
@@ -116,10 +102,48 @@ void ft_print_uint_left(t_print *tab, unsigned int nb, int len)
 
 		ft_putunbr(nb, tab);
 		if (tab->zero || (tab->pnt && tab->minwidth != 0))
+		{
 			while (i < tab->minwidth - len)
-			i += ft_print_zero(tab);
+				i += ft_print_zero(tab);
+			i = 0;
+			if (tab->maxwidth > len)
+				while (i < tab->maxwidth - len)
+					i += ft_print_spaces(tab);
+		}
 		else
 			while (i < tab->maxwidth - len)
+				i += ft_print_spaces(tab);
+	}
+}
+
+void ft_print_uint_right(t_print *tab, unsigned int nb, int len)
+{
+	int i;
+
+	i = 0;
+	if (tab->minwidth > len) 
+	{
+		while (i < tab->minwidth - len)
+			i += ft_print_zero(tab);
+		ft_putunbr(nb, tab);
+		i = 0;
+		while (i < tab->maxwidth - tab->minwidth)
 			i += ft_print_spaces(tab);
+	}
+	else {
+
+		ft_putunbr(nb, tab);
+		if (tab->zero || (tab->pnt && tab->minwidth != 0))
+		{
+			while (i < tab->minwidth - (len))
+				i += ft_print_zero(tab);
+			i = 0;
+			if (tab->maxwidth > len)
+				while (i < tab->maxwidth - len)
+					i += ft_print_spaces(tab);
+		}
+		else
+			while (i < tab->maxwidth - len)
+				i += ft_print_spaces(tab);
 	}
 }

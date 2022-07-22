@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/15 17:29:47 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 12:51:51 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int ft_hexlen(unsigned long long n)
 	return (i);
 }
 
-void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
+void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr)
 {
 	int i;
 	int hash;
@@ -111,7 +111,7 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long ptr)
 	}
 }
 
-void ft_print_hex_right(t_print *tab, int len, unsigned long long ptr)
+void ft_print_ptr_right(t_print *tab, int len, unsigned long long ptr)
 {
 	int i;
 	int hash = 0;

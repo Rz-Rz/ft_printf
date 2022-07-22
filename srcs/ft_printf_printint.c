@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/21 16:35:21 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 13:01:17 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void ft_putnbr(int nb, t_print *tab)
 	if (nb == -2147483648)
 	{
 		tab->tl += ft_putstr("-2147483648");
-		return ;
+		return;
 	}
 	if (nb < 0)
 	{
@@ -68,6 +68,12 @@ void ft_putnbr(int nb, t_print *tab)
 	{
 		tab->tl += ft_putchar(' ');
 		tab->space_flag--;
+	}
+	if (tab->pnt && tab->minwidth == 0 && nb == 0)
+	{
+		if (tab->maxwidth > 0)
+			ft_print_spaces(tab);
+		return;
 	}
 	if (nb >= 10)
 	{
@@ -158,7 +164,7 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 			i += ft_print_zero(tab);
 		ft_putnbr(nb, tab);
 		i = 0;
-		while (i < tab->maxwidth - tab->minwidth)
+		while (i < tab->maxwidth - (tab->minwidth + tab->is_neg))
 			i += ft_print_spaces(tab);
 	}
 	else {
