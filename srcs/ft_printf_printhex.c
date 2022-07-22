@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:10:15 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 13:01:17 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 20:27:15 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,36 @@ void ft_print_hex(t_print *tab)
 void ft_print_hex_right(t_print *tab, int len, unsigned long long nb)
 {
 	int i;
-	int hash = 0;
+	int hash;
 
 	i = 0;
+	hash = 0;
 	if (tab->hash)
 		hash = 2;
-	if (tab->minwidth > len && tab->pnt)
+	if (tab->pnt && tab->minwidth > tab->maxwidth)
 		while (i < tab->minwidth - (len + hash))
 			i += ft_print_zero(tab);
-	else if (tab->zero) {
-		while (i < tab->maxwidth - (len + hash))
+	else if (tab->pnt && tab->minwidth < tab->maxwidth)
+	{
+		if (tab->minwidth > len)
+			while (i < tab->maxwidth - (len + tab->is_neg + hash + (tab->minwidth - len)))
+				i += ft_print_spaces(tab);
+		else 
+			while (i < tab->maxwidth - (len + tab->is_neg + hash))
+				i += ft_print_spaces(tab);
+		i = 0;
+		while (i < tab->minwidth - (len + hash))
 			i += ft_print_zero(tab);
 	}
-	else {
-		while (i < tab->maxwidth - (len + hash))
-			i += ft_print_spaces(tab);
+	else if (tab->zero)
+	{
+		while (i < tab->maxwidth - (len + tab->is_neg + hash))
+			i += ft_print_zero(tab);
 	}
-	if (tab->maxwidth > len && tab->maxwidth > tab->minwidth)
-
-	if (hash || tab->is_ptr)
+	else
+		while (i < tab->maxwidth - (len + tab->is_neg + hash))
+			i += ft_print_spaces(tab);
+	if (hash)
 	{
 		if (tab->upper && tab->hash && nb != 0)
 			tab->tl += ft_putstr("0X");
@@ -76,17 +87,57 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long nb)
 	int hash;
 
 	hash = 0;
-	i = 0;
-	if (tab->hash || tab->is_ptr)
-	{
+	if (tab->hash)
 		hash = 2;
-		if (tab->upper)
-			tab->tl += ft_putstr("0X");
-		else
-			tab->tl += ft_putstr("0x");
+	i = 0;
+	if (tab->minwidth > len) 
+	{
+		if (hash)
+		{
+			if (tab->upper && tab->hash && nb != 0)
+				tab->tl += ft_putstr("0X");
+			else if (nb != 0 && tab->hash)
+				tab->tl += ft_putstr("0x");
+		}
+		while (i < tab->minwidth - (len + hash))
+			i += ft_print_zero(tab);
+		ft_putnbr_hex(nb, tab);
+		i = 0;
+		while (i < tab->maxwidth - (tab->minwidth + tab->is_neg + hash))
+			i += ft_print_spaces(tab);
 	}
-	ft_putnbr_hex(nb, tab);
+	else {
+
+		ft_putnbr_hex(nb, tab);
+		if (tab->zero || (tab->pnt && tab->minwidth != 0))
+		{
+			while (i < tab->minwidth - (len + hash))
+				i += ft_print_zero(tab);
+			i = 0;
+			if (tab->maxwidth > (len + hash))
+				while (i < tab->maxwidth - (len + tab->is_neg + hash))
+					i += ft_print_spaces(tab);
+		}
+		else
+			while (i < tab->maxwidth - (len + tab->is_neg + hash))
+				i += ft_print_spaces(tab);
+	}
 	tab->tl += len;
-	while (i < tab->maxwidth - (len + hash))
-		i += ft_print_spaces(tab);
+	/* int i; */
+	/* int hash; */
+
+	/* hash = 0; */
+	/* i = 0; */
+	/* if (tab->hash || tab->is_ptr) */
+	/* { */
+	/* 	hash = 2; */
+	/* 	if (tab->upper) */
+	/* 		tab->tl += ft_putstr("0X"); */
+	/* 	else */
+	/* 		tab->tl += ft_putstr("0x"); */
+	/* } */
+	/* ft_putnbr_hex(nb, tab); */
+	/* tab->tl += len; */
+	/* while (i < tab->maxwidth - (len + hash)) */
+	/* 	i += ft_print_spaces(tab); */
 }

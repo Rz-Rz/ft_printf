@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 12:55:28 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 20:27:37 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,23 +162,20 @@ int main()
 {
 	int res = 0;
 	int res2 = 0;
-	/* unsigned int a = 0; */
-	/* char *str = "Hello World!"; */
-	/* printf("x%5dx", 10); */
-	/* printf("\n"); */
-	/* printf("x%5dx", 123456789); */
-	/* printf("\n"); */
-	/* printf("x%-5dxc", 10); */
-	/* printf("\n"); */
-	/* printf("x%-5dx", 123456789); */
-	/* printf("\n"); */
-	/* printf("%d", 123456789); */
-	/* printf("\n"); */
-	/* printf("%d", 10); */
-	/* res = ft_printf("%%%x %%%X\n", -1, -10); */
-	/* res2 = printf("%%%x %%%X\n", -1, -10); */
-	res = ft_printf("%8.5x\n", 0);
-	res2 = printf("%8.5x\n", 0);
+	char *a01 = "x";
+	char *a02 = "x";
+	char *a03 = "x";
+	char *a04 = "x";
+	char *a05 = "x";
+	char *a06 = "x";
+	char *a07 = "x";
+	char *a08 = "x";
+	char *a09 = "x";
+	char *a10 = "x";
+	char *a11 = "x";
+	char *a12 = "x";
+	res = ft_printf("%-2.7x\n", 3267);
+	res2 = printf("%-2.7x\n", 3267);
 	printf("res = %d, res2 = %d", res, res2);
 	return (0);
 }

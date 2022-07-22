@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 13:01:17 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 19:37:51 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,12 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 			while (i < tab->maxwidth - (len + tab->is_neg))
 				i += ft_print_spaces(tab);
 		i = 0;
-		while (i < tab->minwidth - (len + tab->is_neg))
+		if (nb < 0)
+		{
+			tab->tl += ft_putchar('-');
+			tab->already_neg = 1;
+		}
+		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
 	}
 	else if (tab->zero)

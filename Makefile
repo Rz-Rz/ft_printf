@@ -6,7 +6,7 @@
 #    By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/28 11:11:35 by kdhrif            #+#    #+#              #
-#    Updated: 2022/06/29 16:38:57 by kdhrif           ###   ########.fr        #
+#    Updated: 2022/07/22 16:31:22 by kdhrif           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc -Wall -Wextra -Werror
 SRCS = srcs/ft_conversion.c srcs/ft_printf.c srcs/ft_printf_flags.c \
        srcs/ft_printf_percent.c srcs/ft_printf_printchar.c srcs/ft_printf_printhex.c \
        srcs/ft_printf_printint.c srcs/ft_printf_printptr.c srcs/ft_printf_printstr.c \
-       srcs/ft_printf_uint.c srcs/ft_printf_utils.c srcs/ft_types.c
+       srcs/ft_printf_uint.c srcs/ft_printf_utils.c srcs/ft_types.c srcs/ft_reset.c
 OBJ = $(SRCS:%.c=%.o)
 OBJF = .cache_exists
 

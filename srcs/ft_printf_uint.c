@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:30:41 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 12:49:01 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 19:54:23 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,6 @@ void ft_print_uint_left(t_print *tab, unsigned int nb, int len)
 	i = 0;
 	if (tab->minwidth > len) 
 	{
-		if (nb < 0)
-		{
-			tab->tl += ft_putchar('-');
-			tab->already_neg = 1;
-		}
 		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
 		ft_putunbr(nb, tab);
@@ -123,27 +118,31 @@ void ft_print_uint_right(t_print *tab, unsigned int nb, int len)
 	i = 0;
 	if (tab->minwidth > len) 
 	{
+		while (i < tab->maxwidth - tab->minwidth)
+			i += ft_print_spaces(tab);
+		i = 0;
 		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
 		ft_putunbr(nb, tab);
-		i = 0;
-		while (i < tab->maxwidth - tab->minwidth)
-			i += ft_print_spaces(tab);
 	}
 	else {
-
-		ft_putunbr(nb, tab);
 		if (tab->zero || (tab->pnt && tab->minwidth != 0))
 		{
-			while (i < tab->minwidth - (len))
-				i += ft_print_zero(tab);
+
+			if (tab->pnt && tab->minwidth != 0)
+				while (i < tab->minwidth - (len))
+					i += ft_print_zero(tab);
+			else if (tab->zero && tab->maxwidth > len)
+				while (i < tab->maxwidth - len)
+					i += ft_print_zero(tab);
 			i = 0;
-			if (tab->maxwidth > len)
+			if (tab->maxwidth > len && !tab->zero)
 				while (i < tab->maxwidth - len)
 					i += ft_print_spaces(tab);
 		}
 		else
 			while (i < tab->maxwidth - len)
 				i += ft_print_spaces(tab);
+		ft_putunbr(nb, tab);
 	}
 }

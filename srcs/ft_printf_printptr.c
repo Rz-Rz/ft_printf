@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 12:51:51 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 18:39:25 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,14 @@ void ft_print_ptr(t_print *tab)
 	unsigned long long ptr;
 	int len;
 
-	len = 0;
-	tab->is_ptr = 1;
 	ptr = va_arg(tab->args, unsigned long long);
 	len = ft_hexlen(ptr);
-
 	if (tab->maxwidth > len)
 	{
 		if (tab->dash)
-			ft_print_hex_left(tab, len, ptr);
+			ft_print_ptr_left(tab, len, ptr);
 		else
-			ft_print_hex_right(tab, len, ptr);
+			ft_print_ptr_right(tab, len, ptr);
 	}
 	else 
 	{
@@ -96,17 +93,13 @@ void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr)
 	}
 	else 
 	{
-		if (tab->hash || tab->is_ptr)
-		{
-			hash = 2;
-			if (tab->upper)
-				tab->tl += ft_putstr("0X");
-			else
-				tab->tl += ft_putstr("0x");
-		}
+		if (tab->upper)
+			tab->tl += ft_putstr("0X");
+		else
+			tab->tl += ft_putstr("0x");
 		ft_putnbr_hex(ptr, tab);
 		tab->tl += len;
-		while (i < tab->maxwidth - (len + hash))
+		while (i < tab->maxwidth - (len + 2))
 			i += ft_print_spaces(tab);
 	}
 }
@@ -114,7 +107,6 @@ void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr)
 void ft_print_ptr_right(t_print *tab, int len, unsigned long long ptr)
 {
 	int i;
-	int hash = 0;
 
 	i = 0;
 	if (ptr == 0)
@@ -124,26 +116,21 @@ void ft_print_ptr_right(t_print *tab, int len, unsigned long long ptr)
 		tab->tl += ft_putstr("(nil)");
 	}
 	else {
-		if (tab->hash)
-			hash = 2;
 		if (tab->minwidth > len && tab->pnt)
-			while (i < tab->minwidth - (len + hash))
+			while (i < tab->minwidth - (len + 2))
 				i += ft_print_zero(tab);
 		else if (tab->zero) {
-			while (i < tab->maxwidth - (len + hash))
+			while (i < tab->maxwidth - (len + 2))
 				i += ft_print_zero(tab);
 		}
 		else {
-			while (i < tab->maxwidth - (len + hash))
+			while (i < tab->maxwidth - (len + 2))
 				i += ft_print_spaces(tab);
 		}
-		if (hash || tab->is_ptr)
-		{
-			if (tab->upper && tab->hash && ptr != 0)
-				tab->tl += ft_putstr("0X");
-			else if (ptr != 0 && tab->hash)
-				tab->tl += ft_putstr("0x");
-		}
+		if (tab->upper && ptr != 0)
+			tab->tl += ft_putstr("0X");
+		else if (ptr != 0)
+			tab->tl += ft_putstr("0x");
 		ft_putnbr_hex(ptr, tab);
 		tab->tl += len;
 	}

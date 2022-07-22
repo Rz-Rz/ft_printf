@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 10:57:43 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/20 14:36:41 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 16:27:39 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char *ft_strnew(size_t size)
 
 void ft_strcpy(char *dst, const char *src, int n)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	while (src[i] && i < n)

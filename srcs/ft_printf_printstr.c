@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/20 21:22:22 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/22 16:49:17 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 
 void ft_printstr(t_print *tab)
 {
-	int i;
 	int len;
 	char *str;
 
 	str = va_arg(tab->args, char*);
-	i = 0;
 	if (!str) 
-		i = ft_print_nullstr(tab);
-	if (i != -1)
-		len = ft_strlen(str);
+	{
+		ft_print_nullstr(tab);
+		return;
+	}
+	len = ft_strlen(str);
 	if (tab->zero || tab->hash)
 		ft_reset_str(tab);
 	if (!tab->dash)
@@ -96,6 +96,7 @@ void ft_printstr_right(t_print *tab, char *str, int len)
 		{
 			ft_strwidth(tab, tab->maxwidth - tab->minwidth);
 			while (i < tab->minwidth)
+	if (i != -1)
 				tab->tl += ft_putchar(str[i++]);
 		}
 		else if (tab->maxwidth < len && tab->minwidth >= len)
@@ -142,7 +143,7 @@ int ft_print_nullstr(t_print *tab)
 	}
 	if (tab->minwidth >= 6)
 		tab->tl += ft_putstr(str);
-	if (tab->dash && tab->maxwidth > 6)
+	if (tab->dash && tab->maxwidth)
 	{
 		if (tab->minwidth >= 6)
 			ft_strwidth(tab, tab->maxwidth - 6);
