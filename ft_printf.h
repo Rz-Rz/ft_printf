@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/23 13:43:47 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/23 22:04:12 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void ft_printint_zero(t_print *tab, int nb, int len);
 void ft_print_ptr_right(t_print *tab, int len, unsigned long long ptr);
 void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr);
 void ft_printhex_zero(t_print *tab);
+void ft_printint_norm(t_print *tab);
 
 int ft_print_nullstr(t_print *tab);
 int ft_uintlen(unsigned int nb);

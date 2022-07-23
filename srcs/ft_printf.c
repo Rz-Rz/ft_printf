@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/23 19:56:19 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/23 22:45:49 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 				tab->pnt = 1;
 			if (ft_isnum(format[i]))
 			{
-				if (format[i] == '0' && format[i - 1] == '%' && i++)
+				if (format[i] == '0' && (format[i - 1] == '%' || format[i - 1] == '+') && i++)
 					tab->zero = 1;
 				if (!tab->pnt)
 				{
@@ -162,20 +162,8 @@ int main()
 {
 	int res = 0;
 	int res2 = 0;
-	char *a01 = "x";
-	char *a02 = "x";
-	char *a03 = "x";
-	char *a04 = "x";
-	char *a05 = "x";
-	char *a06 = "x";
-	char *a07 = "x";
-	char *a08 = "x";
-	char *a09 = "x";
-	char *a10 = "x";
-	char *a11 = "x";
-	char *a12 = "x";
-	res = ft_printf("%+05d\n", 432);
-	res2 = printf("%+05d\n", 432);
+	res = ft_printf("% .6d\n", -3);
+	res2 = printf("% .6d\n", -3);
 	printf("res = %d, res2 = %d", res, res2);
 	return (0);
 }
