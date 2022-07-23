@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 18:39:25 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/23 13:52:28 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ int ft_hexlen(unsigned long long n)
 void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr)
 {
 	int i;
-	int hash;
 
-	hash = 0;
 	i = 0;
 	if (ptr == 0)
 	{

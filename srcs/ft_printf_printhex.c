@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:10:15 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 20:27:15 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/23 13:45:50 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void ft_print_hex(t_print *tab)
 	int len;
 
 	nb = va_arg(tab->args, unsigned int);
+	if (nb == 0 && tab->pnt && tab->minwidth == 0)
+	{
+		ft_printhex_zero(tab);
+		return ;
+	}
 	len = ft_hexlen(nb);
 	if (tab->maxwidth > len || tab->minwidth > len)
 	{
@@ -36,6 +41,19 @@ void ft_print_hex(t_print *tab)
 		tab->tl += len;
 	}
 	
+}
+
+void ft_printhex_zero(t_print *tab)
+{
+	int i;
+
+	i = 0;
+	if (tab->maxwidth > 1)
+		while (i < tab->maxwidth)
+			i += ft_print_spaces(tab);
+	else
+		return;
+
 }
 
 void ft_print_hex_right(t_print *tab, int len, unsigned long long nb)
@@ -123,21 +141,4 @@ void ft_print_hex_left(t_print *tab, int len, unsigned long long nb)
 				i += ft_print_spaces(tab);
 	}
 	tab->tl += len;
-	/* int i; */
-	/* int hash; */
-
-	/* hash = 0; */
-	/* i = 0; */
-	/* if (tab->hash || tab->is_ptr) */
-	/* { */
-	/* 	hash = 2; */
-	/* 	if (tab->upper) */
-	/* 		tab->tl += ft_putstr("0X"); */
-	/* 	else */
-	/* 		tab->tl += ft_putstr("0x"); */
-	/* } */
-	/* ft_putnbr_hex(nb, tab); */
-	/* tab->tl += len; */
-	/* while (i < tab->maxwidth - (len + hash)) */
-	/* 	i += ft_print_spaces(tab); */
 }

@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 19:37:51 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/23 19:27:30 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ void ft_print_integer(t_print *tab)
 		tab->zero = 0;
 	if (tab->zero && tab->pnt)
 		tab->zero = 0;
-	if (tab->sign)
-		tab->minwidth--;
 	if (nb < 0)
 		tab->is_neg = 1;
+	if (tab->space_flag)
+		tab->maxwidth--;
+	if (tab->is_neg && !tab->sign)
+		tab->maxwidth--;
+	if (tab->sign)
+		tab->maxwidth--;
 	if ((tab->maxwidth > 0 && tab->maxwidth > len) || (tab->minwidth > 0 && tab->minwidth > len))
 	{
 		if (tab->dash == 1)
@@ -117,22 +121,37 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 			tab->tl += ft_putchar('-');
 			tab->already_neg = 1;
 		}
+		if (tab->sign && !tab->is_neg)
+		{
+			tab->tl += ft_putchar('+');
+			tab->sign--;
+		}
+		if (tab->space_flag)
+		{
+			tab->tl += ft_putchar(' ');
+			tab->space_flag--;
+		}
 		while (i < tab->minwidth - (len))
 			i += ft_print_zero(tab);
 	}
 	else if (tab->pnt && tab->minwidth < tab->maxwidth)
 	{
 		if (tab->minwidth > len)
-			while (i < tab->maxwidth - (len + tab->is_neg + (tab->minwidth - len)))
+			while (i < tab->maxwidth - (len + (tab->minwidth - len)))
 				i += ft_print_spaces(tab);
 		else 
-			while (i < tab->maxwidth - (len + tab->is_neg))
+			while (i < tab->maxwidth - (len))
 				i += ft_print_spaces(tab);
 		i = 0;
 		if (nb < 0)
 		{
 			tab->tl += ft_putchar('-');
 			tab->already_neg = 1;
+		}
+		if (tab->sign && !tab->is_neg)
+		{
+			tab->tl += ft_putchar('+');
+			tab->sign--;
 		}
 		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
@@ -144,11 +163,11 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 			tab->tl += ft_putchar('-');
 			tab->already_neg = 1;
 		}
-		while (i < tab->maxwidth - (len + tab->is_neg))
+		while (i < tab->maxwidth - (len))
 			i += ft_print_zero(tab);
 	}
 	else
-		while (i < tab->maxwidth - (len + tab->is_neg))
+		while (i < tab->maxwidth - len )
 			i += ft_print_spaces(tab);
 	ft_putnbr(nb, tab);
 }
@@ -165,11 +184,16 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 			tab->tl += ft_putchar('-');
 			tab->already_neg = 1;
 		}
+		if (tab->sign && !tab->is_neg)
+		{
+			tab->tl += ft_putchar('+');
+			tab->sign--;
+		}
 		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
 		ft_putnbr(nb, tab);
 		i = 0;
-		while (i < tab->maxwidth - (tab->minwidth + tab->is_neg))
+		while (i < tab->maxwidth - tab->minwidth)
 			i += ft_print_spaces(tab);
 	}
 	else {
@@ -181,11 +205,11 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 				i += ft_print_zero(tab);
 			i = 0;
 			if (tab->maxwidth > len)
-				while (i < tab->maxwidth - (len + tab->is_neg))
+				while (i < tab->maxwidth - (len))
 					i += ft_print_spaces(tab);
 		}
 		else
-			while (i < tab->maxwidth - (len + tab->is_neg))
+			while (i < tab->maxwidth - len)
 				i += ft_print_spaces(tab);
 	}
 }
