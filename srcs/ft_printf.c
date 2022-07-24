@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/23 22:45:49 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/24 14:38:10 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 				tab->pnt = 1;
 			if (ft_isnum(format[i]))
 			{
-				if (format[i] == '0' && (format[i - 1] == '%' || format[i - 1] == '+') && i++)
+				if (format[i] == '0' && (format[i - 1] == '%' || format[i - 1] == '+' || format[i - 1] == ' ') && i++)
 					tab->zero = 1;
 				if (!tab->pnt)
 				{
@@ -162,8 +162,8 @@ int main()
 {
 	int res = 0;
 	int res2 = 0;
-	res = ft_printf("% .6d\n", -3);
-	res2 = printf("% .6d\n", -3);
+	res = ft_printf("% 07d\n", -54);
+	res2 = printf("% 07d\n", -54);
 	printf("res = %d, res2 = %d", res, res2);
 	return (0);
 }
