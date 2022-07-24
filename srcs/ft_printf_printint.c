@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/24 14:47:58 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/24 18:09:38 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,7 @@ void ft_print_integer(t_print *tab)
 
 	nb = va_arg(tab->args, int);
 	len = ft_intlen(nb);
-	if (nb == 0 && tab->pnt && !tab->minwidth)
-		len--;
-	if (tab->zero && tab->dash)
-		tab->zero = 0;
-	if (tab->zero && tab->pnt)
-		tab->zero = 0;
-	if (nb < 0)
-		tab->is_neg = 1;
-	if (tab->space_flag && !tab->zero)
-		tab->maxwidth--;
-	if (tab->is_neg && !tab->sign)
-		tab->maxwidth--;
-	if (tab->sign)
-		tab->maxwidth--;
+	ft_printint_checker(tab, &nb, &len);
 	if ((tab->maxwidth > 0 && tab->maxwidth > len) || (tab->minwidth > 0 && tab->minwidth > len))
 	{
 		if (tab->dash == 1)
@@ -66,15 +53,9 @@ void ft_putnbr(int nb, t_print *tab)
 			tab->tl += ft_putchar('-');
 	}
 	else if (tab->sign && !tab->is_neg)
-	{
-		tab->tl += ft_putchar('+');
-		tab->sign--; 
-	}
+		ft_print_plus(tab);
 	if (tab->space_flag == 1 && !tab->is_neg && !tab->zero)
-	{
-		tab->tl += ft_putchar(' ');
-		tab->space_flag--;
-	}
+		ft_print_spaceflag(tab);
 	if (tab->pnt && tab->minwidth == 0 && nb == 0)
 		return;
 	if (nb >= 10)
@@ -115,25 +96,17 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 	if (tab->pnt && tab->minwidth > tab->maxwidth)
 	{
 		if (nb < 0)
-		{
-			tab->tl += ft_putchar('-');
-			tab->already_neg = 1;
-		}
+			ft_print_minus(tab);
 		if (tab->sign && !tab->is_neg)
-		{
-			tab->tl += ft_putchar('+');
-			tab->sign--;
-		}
+			ft_print_plus(tab);
 		if (tab->space_flag && !tab->is_neg)
-		{
-			tab->tl += ft_putchar(' ');
-			tab->space_flag--;
-		}
+			ft_print_spaceflag(tab);
 		while (i < tab->minwidth - (len))
 			i += ft_print_zero(tab);
 	}
 	else if (tab->pnt && tab->minwidth < tab->maxwidth)
 	{
+		printf("len = %d\n", len);
 		if (tab->minwidth > len)
 			while (i < tab->maxwidth - (len + (tab->minwidth - len)))
 				i += ft_print_spaces(tab);
@@ -142,32 +115,20 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 				i += ft_print_spaces(tab);
 		i = 0;
 		if (nb < 0)
-		{
-			tab->tl += ft_putchar('-');
-			tab->already_neg = 1;
-		}
+			ft_print_minus(tab);
 		if (tab->sign && !tab->is_neg)
-		{
-			tab->tl += ft_putchar('+');
-			tab->sign--;
-		}
+			ft_print_plus(tab);
 		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
 	}
 	else if (tab->zero)
 	{
 		if (nb < 0 && nb != -2147483648)
-		{
-			tab->tl += ft_putchar('-');
-			tab->already_neg = 1;
-		}
+			ft_print_minus(tab);
 		if (tab->space_flag && !tab->is_neg)
 			tab->tl += ft_putchar(' ');
 		if (tab->sign && !tab->is_neg)
-		{
-			tab->tl += ft_putchar('+');
-			tab->sign--;
-		}
+			ft_print_plus(tab);
 		while (i < tab->maxwidth - (len))
 			i += ft_print_zero(tab);
 	}
@@ -185,15 +146,9 @@ void ft_print_int_left(t_print *tab, int nb, int len)
 	if (tab->minwidth > len) 
 	{
 		if (nb < 0)
-		{
-			tab->tl += ft_putchar('-');
-			tab->already_neg = 1;
-		}
+			ft_print_minus(tab);
 		if (tab->sign && !tab->is_neg)
-		{
-			tab->tl += ft_putchar('+');
-			tab->sign--;
-		}
+			ft_print_plus(tab);
 		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
 		ft_putnbr(nb, tab);

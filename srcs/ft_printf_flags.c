@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:16:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/22 17:18:04 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/24 17:26:54 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,26 @@ int ft_print_zero(t_print *tab)
 int ft_print_spaces(t_print *tab)
 {
 	tab->tl += ft_putchar(' ');
+	return (1);
+}
+
+int ft_print_minus(t_print *tab)
+{
+	tab->tl += ft_putchar('-');
+	tab->already_neg = 1;
+	return (1);
+}
+
+int ft_print_plus(t_print *tab)
+{
+	tab->tl += ft_putchar('+');
+	tab->sign--;
+	return (1);
+}
+
+int ft_print_spaceflag(t_print *tab)
+{
+	tab->tl += ft_putchar(' ');
+	tab->space_flag--;
 	return (1);
 }

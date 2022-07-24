@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/23 22:04:12 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/24 17:27:08 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_struct {
 } t_print;
 
 void ft_print_char(t_print *tab);
+void ft_printint_checker(t_print *tab, int* nb, int* len);
 void choose_conversion(t_print *tab, const char *format, int i);
 void	ft_bzero(char *s, size_t n);
 void	*ft_memset(char *s, int c, size_t n);
@@ -100,5 +101,8 @@ int ft_strlen(char *s);
 int ft_intlen(int nb);
 int ft_print_spaces(t_print *tab);
 int ft_print_zero(t_print *tab);
+int ft_print_minus(t_print *tab);
+int ft_print_plus(t_print *tab);
+int ft_print_spaceflag(t_print *tab);
 
 char *ft_strnew(size_t size);

@@ -6,14 +6,28 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 22:03:38 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/23 23:16:15 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/24 18:12:34 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void ft_printint_norm(t_print *tab)
+void ft_printint_checker(t_print *tab, int* nb, int* len)
 {
-
-
+	if (*nb == 0 && tab->pnt && !tab->minwidth)
+		*len = 0;
+	if (tab->zero && tab->dash)
+		tab->zero = 0;
+	if (tab->zero && tab->pnt)
+		tab->zero = 0;
+	if (*nb < 0)
+		tab->is_neg = 1;
+	if (tab->space_flag && !tab->is_neg && tab->minwidth <= *len)
+		tab->maxwidth--;
+	if (tab->minwidth > *len && tab->space_flag)
+		tab->space_flag--;
+	if (tab->is_neg && !tab->sign)
+		tab->maxwidth--;
+	if (tab->sign)
+		tab->maxwidth--;
 }
