@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/24 17:27:08 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/24 20:52:47 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ void ft_print_ptr_right(t_print *tab, int len, unsigned long long ptr);
 void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr);
 void ft_printhex_zero(t_print *tab);
 void ft_printint_norm(t_print *tab);
+void ft_printflags(t_print *tab, int nb);
+void ft_print_maxwidth(t_print *tab, int len, char opt);
+void ft_print_minwidth(t_print *tab, int len);
+void ft_print_maxwidthmin(t_print *tab);
 
 int ft_print_nullstr(t_print *tab);
 int ft_uintlen(unsigned int nb);
@@ -101,7 +105,7 @@ int ft_strlen(char *s);
 int ft_intlen(int nb);
 int ft_print_spaces(t_print *tab);
 int ft_print_zero(t_print *tab);
-int ft_print_minus(t_print *tab);
+int ft_print_minus(t_print *tab, int nb);
 int ft_print_plus(t_print *tab);
 int ft_print_spaceflag(t_print *tab);
 

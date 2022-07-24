@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/24 18:09:38 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/24 20:55:41 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,86 +90,48 @@ int ft_intlen(int nb)
 
 void ft_print_int_right(t_print *tab, int nb, int len)
 {
-	int i;
-
-	i = 0;
 	if (tab->pnt && tab->minwidth > tab->maxwidth)
 	{
-		if (nb < 0)
-			ft_print_minus(tab);
-		if (tab->sign && !tab->is_neg)
-			ft_print_plus(tab);
-		if (tab->space_flag && !tab->is_neg)
-			ft_print_spaceflag(tab);
-		while (i < tab->minwidth - (len))
-			i += ft_print_zero(tab);
+		ft_printflags(tab, nb);
+		ft_print_minwidth(tab, len);
 	}
 	else if (tab->pnt && tab->minwidth < tab->maxwidth)
 	{
-		printf("len = %d\n", len);
 		if (tab->minwidth > len)
-			while (i < tab->maxwidth - (len + (tab->minwidth - len)))
-				i += ft_print_spaces(tab);
+			ft_print_maxwidthmin(tab);
 		else 
-			while (i < tab->maxwidth - (len - tab->space_flag))
-				i += ft_print_spaces(tab);
-		i = 0;
-		if (nb < 0)
-			ft_print_minus(tab);
-		if (tab->sign && !tab->is_neg)
-			ft_print_plus(tab);
-		while (i < tab->minwidth - len)
-			i += ft_print_zero(tab);
+			ft_print_maxwidth(tab, len, ' ');
+		ft_printflags(tab, nb);
+		ft_print_minwidth(tab, len);
 	}
 	else if (tab->zero)
 	{
-		if (nb < 0 && nb != -2147483648)
-			ft_print_minus(tab);
-		if (tab->space_flag && !tab->is_neg)
-			tab->tl += ft_putchar(' ');
-		if (tab->sign && !tab->is_neg)
-			ft_print_plus(tab);
-		while (i < tab->maxwidth - (len))
-			i += ft_print_zero(tab);
+		ft_printflags(tab, nb);
+		ft_print_maxwidth(tab, len, '0');
 	}
 	else
-		while (i < tab->maxwidth - (len - tab->space_flag))
-			i += ft_print_spaces(tab);
+		ft_print_maxwidth(tab, len, ' ');
 	ft_putnbr(nb, tab);
 }
 
 void ft_print_int_left(t_print *tab, int nb, int len)
 {
-	int i;
-
-	i = 0;
 	if (tab->minwidth > len) 
 	{
-		if (nb < 0)
-			ft_print_minus(tab);
-		if (tab->sign && !tab->is_neg)
-			ft_print_plus(tab);
-		while (i < tab->minwidth - len)
-			i += ft_print_zero(tab);
+		ft_printflags(tab, nb);
+		ft_print_minwidth(tab, len);
 		ft_putnbr(nb, tab);
-		i = 0;
-		while (i < tab->maxwidth - tab->minwidth)
-			i += ft_print_spaces(tab);
+		ft_print_maxwidthmin(tab);
 	}
 	else {
 
 		ft_putnbr(nb, tab);
-		if (tab->zero || (tab->pnt && tab->minwidth != 0))
+		if (tab->pnt && tab->minwidth != 0)
 		{
-			while (i < tab->minwidth - (len))
-				i += ft_print_zero(tab);
-			i = 0;
 			if (tab->maxwidth > len)
-				while (i < tab->maxwidth - (len))
-					i += ft_print_spaces(tab);
+				ft_print_maxwidth(tab, len, ' ');
 		}
 		else
-			while (i < tab->maxwidth - (len - tab->space_flag))
-				i += ft_print_spaces(tab);
+			ft_print_maxwidth(tab, len, ' ');
 	}
 }
