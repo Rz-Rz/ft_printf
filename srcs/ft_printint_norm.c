@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 22:03:38 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/24 20:05:10 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/24 21:31:51 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void ft_printint_checker(t_print *tab, int* nb, int* len)
 		tab->space_flag = 0;
 	if (tab->space_flag && tab->minwidth <= *len)
 		tab->maxwidth--;
-	if (tab->minwidth > *len && tab->space_flag)
-		tab->space_flag--;
+	if (tab->space_flag && tab->dash && tab->maxwidth > tab->minwidth)
+		tab->maxwidth--;
 	if (tab->is_neg && !tab->sign)
 		tab->maxwidth--;
 	if (tab->sign)
