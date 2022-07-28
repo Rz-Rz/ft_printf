@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 20:16:16 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/24 20:53:30 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/28 15:13:31 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,12 @@ void ft_print_maxwidthmin(t_print *tab)
 	i = 0;
 	while (i < tab->maxwidth - tab->minwidth)
 		i += ft_print_spaces(tab);
+}
+
+void ft_printhex_hash(t_print *tab)
+{
+	if (tab->hash && tab->upper)
+		tab->tl += ft_putstr("0X");
+	else if (tab->hash && !tab->upper)
+		tab->tl += ft_putstr("0x");
 }

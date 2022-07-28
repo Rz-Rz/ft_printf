@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:23:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/27 15:43:57 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/28 17:02:34 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ void ft_print_integer(t_print *tab)
 
 void ft_putnbr(int nb, t_print *tab)
 {
-	if (nb == -2147483648)
-	{
-		tab->tl += ft_putstr("-2147483648");
-		return;
-	}
 	if (nb < 0)
 	{
 		nb = -nb;
 		if (!tab->already_neg)
 			tab->tl += ft_putchar('-');
+	}
+	if (nb == -2147483648)
+	{
+		tab->tl += ft_putstr("2147483648");
+		return;
 	}
 	else if (tab->sign && !tab->is_neg)
 		ft_print_plus(tab);
@@ -73,7 +73,7 @@ int ft_intlen(int nb)
 	if (nb < 0)
 	{
 		if (nb == -2147483648)
-			return (11);
+			return (10);
 		nb = -nb;
 	}
 	while (nb > 0)
@@ -97,6 +97,11 @@ void ft_print_int_right(t_print *tab, int nb, int len)
 			ft_print_maxwidthmin(tab);
 		else 
 			ft_print_maxwidth(tab, len, ' ');
+		ft_printflags(tab, nb);
+		ft_print_minwidth(tab, len);
+	}
+	else if (tab->pnt && tab->minwidth == tab->maxwidth)
+	{
 		ft_printflags(tab, nb);
 		ft_print_minwidth(tab, len);
 	}

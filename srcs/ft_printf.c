@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/27 19:06:38 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/28 17:08:11 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 				tab->pnt = 1;
 			if (ft_isnum(format[i]))
 			{
-				if (format[i] == '0' && (format[i - 1] == '%' || format[i - 1] == '+' || format[i - 1] == ' ') && i++)
+				if (format[i] == '0' && (format[i - 1] == '%' || format[i - 1] == '+' || format[i - 1] == ' ' || format[i - 1] == '#') && i++)
 					tab->zero = 1;
 				if (!tab->pnt)
 				{
@@ -156,14 +156,15 @@ void choose_conversion(t_print *tab, const char *format, int i)
 		ft_initialise_tab(tab, 0);
 }
 
-#include <stdio.h>
+/* #include <stdio.h> */
 
-int main()
-{
-	int res = 0;
-	int res2 = 0;
-	res = ft_printf("%#.5x\n", 21);
-	res2 = printf("%#.5x\n", 21);
-	printf("res = %d, res2 = %d", res, res2);
-	return (0);
-}
+/* int main() */
+/* { */
+/* 	int res = 0; */
+/* 	int res2 = 0; */
+/* 	char* str = NULL; */
+/* 	res = ft_printf("%.4s making a %.4s here: %.13s\n", "I'm delighted", "notation", "HUGE SUCCESS!"); */
+/* 	res2 = printf("%.4s making a %.4s here: %.13s\n", "I'm delighted", "notation", "HUGE SUCCESS!"); */
+/* 	printf("res = %d, res2 = %d", res, res2); */
+/* 	return (0); */
+/* } */

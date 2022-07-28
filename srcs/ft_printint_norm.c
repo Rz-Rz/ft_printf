@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 22:03:38 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/27 15:48:32 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/28 17:08:55 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,18 @@ void ft_printint_checker(t_print *tab, int* nb, int* len)
 void ft_printflags(t_print *tab, int nb)
 {
 		if (nb < 0)
-			ft_print_minus(tab, nb);
+			ft_print_minus(tab);
 		if (tab->sign && !tab->is_neg)
 			ft_print_plus(tab);
 		if (tab->space_flag && !tab->is_neg)
 			ft_print_spaceflag(tab);
+}
+
+void ft_printhex_flags(t_print *tab, int nb)
+{
+	if (tab->space_flag && !tab->is_neg)
+		ft_print_spaceflag(tab);
+	if (tab->hash && nb != 0)
+		ft_printhex_hash(tab);
+
 }
