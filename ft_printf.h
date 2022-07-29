@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/29 14:39:29 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/29 16:23:40 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void ft_printhex_flags(t_print *tab, int nb);
 void ft_printhex_hash(t_print *tab);
 void ft_printhex_checker(t_print *tab, int nb);
 void ft_print_flagsplusminwidth(t_print *tab, int nb, int len);
+void ft_printf_checkflags(t_print *tab, int* i, int* j, const char* format);
 
 int ft_print_nullstr(t_print *tab);
 int ft_uintlen(unsigned int nb);
