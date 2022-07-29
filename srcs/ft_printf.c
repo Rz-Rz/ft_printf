@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/28 17:08:11 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/29 14:35:21 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,8 +163,8 @@ void choose_conversion(t_print *tab, const char *format, int i)
 /* 	int res = 0; */
 /* 	int res2 = 0; */
 /* 	char* str = NULL; */
-/* 	res = ft_printf("%.4s making a %.4s here: %.13s\n", "I'm delighted", "notation", "HUGE SUCCESS!"); */
-/* 	res2 = printf("%.4s making a %.4s here: %.13s\n", "I'm delighted", "notation", "HUGE SUCCESS!"); */
+/* 	res = ft_printf("%#7x\n", 33); */
+/* 	res2 = printf("%#7x\n", 33); */
 /* 	printf("res = %d, res2 = %d", res, res2); */
 /* 	return (0); */
 /* } */

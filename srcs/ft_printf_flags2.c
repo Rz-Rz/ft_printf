@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 20:16:16 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/28 15:13:31 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/29 14:39:09 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,10 @@ void ft_printhex_hash(t_print *tab)
 		tab->tl += ft_putstr("0X");
 	else if (tab->hash && !tab->upper)
 		tab->tl += ft_putstr("0x");
+}
+
+void ft_print_flagsplusminwidth(t_print *tab, int nb, int len)
+{
+		ft_printhex_flags(tab, nb);
+		ft_print_minwidth(tab, len);
 }
