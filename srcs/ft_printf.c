@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/30 13:30:11 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/30 16:20:45 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ int	ft_eval_format(t_print *tab, const char *format, int i)
 		i = ft_printf_checkflags(tab, i, format);
 		if (ft_isnum(format[i]))
 		{
-			if (format[i] == '0' && (format[i - 1] == '%' || format[i
-					- 1] == '+' || format[i - 1] == ' ' || format[i - 1] == '#')
-				&& i++)
+			if (format[i] == '0' && ft_checkflags_zero(format, i) && i++)
 				tab->zero = 1;
 			if (!tab->pnt)
 				i = ft_printf_checkflagint2(tab, i, nb, format);

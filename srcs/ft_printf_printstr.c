@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/30 14:04:53 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/30 16:15:25 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,6 @@ int	ft_putstr(char *s)
 	while (s[i])
 		write(1, &s[i++], 1);
 	return (i);
-}
-
-int	ft_strlen(char *s)
-{
-	char	*str;
-
-	str = s;
-	while (*str)
-		str++;
-	return (str - s);
 }
 
 int	ft_print_nullstr(t_print *tab)

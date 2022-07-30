@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:31:59 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/30 13:59:40 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/30 16:20:15 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ void		ft_print_maxwidthmin(t_print *tab);
 void		ft_printhex_flags(t_print *tab, int nb);
 void		ft_printhex_hash(t_print *tab);
 void		ft_printhex_checker(t_print *tab, int nb);
-void	ft_printhex_flagsplusminwidth(t_print *tab, int nb, int len);
-void ft_printint_flagsplusminwidth(t_print *tab, int nb, int len);
-void ft_printptr_nil(t_print *tab);
-void ft_printstr_putstrwidth(t_print *tab, char *str, int len);
+void		ft_printhex_flagsplusminwidth(t_print *tab, int nb, int len);
+void		ft_printint_flagsplusminwidth(t_print *tab, int nb, int len);
+void		ft_printptr_nil(t_print *tab);
+void		ft_printstr_putstrwidth(t_print *tab, char *str, int len);
 
 int			ft_print_nullstr(t_print *tab);
 int			ft_uintlen(unsigned int nb);
@@ -124,6 +124,7 @@ int			ft_printf_checkflagint(t_print *tab, int i, char *nb,
 				const char *format);
 int			ft_printf_checkflagint2(t_print *tab, int i, char *nb,
 				const char *format);
+int			ft_checkflags_zero(const char *format, int i);
 
 char		*ft_strnew(size_t size);
 
