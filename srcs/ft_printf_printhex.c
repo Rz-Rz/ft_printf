@@ -6,16 +6,16 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:10:15 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/29 14:41:19 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/30 13:35:29 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void ft_print_hex(t_print *tab)
+void	ft_print_hex(t_print *tab)
 {
-	unsigned int nb;
-	int len;
+	unsigned int	nb;
+	int				len;
 
 	nb = va_arg(tab->args, unsigned int);
 	ft_printhex_checker(tab, nb);
@@ -32,7 +32,7 @@ void ft_print_hex(t_print *tab)
 		else
 			ft_print_hex_right(tab, len, nb);
 	}
-	else 
+	else
 	{
 		ft_printhex_flags(tab, nb);
 		ft_putnbr_hex(nb, tab);
@@ -40,7 +40,7 @@ void ft_print_hex(t_print *tab)
 	}
 }
 
-void ft_printhex_checker(t_print *tab, int nb)
+void	ft_printhex_checker(t_print *tab, int nb)
 {
 	if (tab->hash && nb != 0)
 		tab->maxwidth -= 2;
@@ -48,27 +48,27 @@ void ft_printhex_checker(t_print *tab, int nb)
 		tab->maxwidth--;
 }
 
-void ft_printhex_zero(t_print *tab)
+void	ft_printhex_zero(t_print *tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (tab->maxwidth >= 1)
 		while (i < tab->maxwidth)
 			i += ft_print_spaces(tab);
 	else
-		return;
+		return ;
 }
 
-void ft_print_hex_right(t_print *tab, int len, unsigned long long nb)
+void	ft_print_hex_right(t_print *tab, int len, unsigned long long nb)
 {
 	if (tab->pnt && tab->minwidth > tab->maxwidth)
-		ft_print_flagsplusminwidth(tab, nb, len);
+		ft_printhex_flagsplusminwidth(tab, nb, len);
 	else if (tab->pnt && tab->minwidth < tab->maxwidth)
 	{
 		if (tab->minwidth > len)
 			ft_print_maxwidthmin(tab);
-		if (tab->minwidth < len) 
+		if (tab->minwidth < len)
 			ft_print_maxwidth(tab, len, ' ');
 		ft_printhex_flags(tab, nb);
 		ft_print_minwidth(tab, len);
@@ -87,17 +87,18 @@ void ft_print_hex_right(t_print *tab, int len, unsigned long long nb)
 	tab->tl += len;
 }
 
-void ft_print_hex_left(t_print *tab, int len, unsigned long long nb)
+void	ft_print_hex_left(t_print *tab, int len, unsigned long long nb)
 {
-	if (tab->minwidth > len) 
+	if (tab->minwidth > len)
 	{
 		ft_printhex_flags(tab, nb);
 		ft_print_minwidth(tab, len);
 		ft_putnbr_hex(nb, tab);
 		ft_print_maxwidthmin(tab);
 	}
-	else {
-		ft_printhex_flags(tab, nb);	
+	else
+	{
+		ft_printhex_flags(tab, nb);
 		ft_putnbr_hex(nb, tab);
 		if (tab->zero || (tab->pnt && tab->minwidth != 0))
 		{

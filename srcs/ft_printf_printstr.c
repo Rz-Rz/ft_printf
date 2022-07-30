@@ -6,24 +6,23 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/22 16:49:17 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/30 14:04:53 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 #include <stdio.h>
 
-
-void ft_printstr(t_print *tab)
+void	ft_printstr(t_print *tab)
 {
-	int len;
-	char *str;
+	int		len;
+	char	*str;
 
-	str = va_arg(tab->args, char*);
-	if (!str) 
+	str = va_arg(tab->args, char *);
+	if (!str)
 	{
 		ft_print_nullstr(tab);
-		return;
+		return ;
 	}
 	len = ft_strlen(str);
 	if (tab->zero || tab->hash)
@@ -34,29 +33,22 @@ void ft_printstr(t_print *tab)
 		ft_printstr_left(tab, str, len);
 }
 
-void ft_printstr_left(t_print *tab, char *str, int len)
+void	ft_printstr_left(t_print *tab, char *str, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!tab->pnt)
 	{
 		if (tab->maxwidth > len)
-		{
-			tab->tl += ft_putstr(str);
-			ft_strwidth(tab, tab->maxwidth - len);
-		}
-		else 
+			ft_printstr_putstrwidth(tab, str, len);
+		else
 			tab->tl += ft_putstr(str);
 	}
 	else if (tab->pnt)
 	{
 		if (tab->maxwidth > len && tab->minwidth >= len)
-		{
-			tab->tl += ft_putstr(str);
-			ft_strwidth(tab, tab->maxwidth - len);
-			return;
-		}
+			ft_printstr_putstrwidth(tab, str, len);
 		else if (tab->minwidth < len)
 		{
 			while (i < tab->minwidth)
@@ -64,72 +56,63 @@ void ft_printstr_left(t_print *tab, char *str, int len)
 			ft_strwidth(tab, tab->maxwidth - tab->minwidth);
 		}
 		else if (tab->maxwidth < len && tab->minwidth >= len)
-				tab->tl += ft_putstr(str);
-
+			tab->tl += ft_putstr(str);
 	}
 }
 
-void ft_printstr_right(t_print *tab, char *str, int len)
+void	ft_printstr_right(t_print *tab, char *str, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!tab->pnt)
 	{
 		if (tab->maxwidth > len)
-		{
-			ft_strwidth(tab, tab->maxwidth - len);
-			tab->tl += ft_putstr(str);
-		}
-		else 
+			ft_printstr_putstrwidth(tab, str, len);
+		else
 			tab->tl += ft_putstr(str);
 	}
 	else if (tab->pnt)
 	{
 		if (tab->maxwidth > len && tab->minwidth >= len)
-		{
-			ft_strwidth(tab, tab->maxwidth - len);
-			tab->tl += ft_putstr(str);
-			return;
-		}
+			ft_printstr_putstrwidth(tab, str, len);
 		else if (tab->minwidth < len)
 		{
 			ft_strwidth(tab, tab->maxwidth - tab->minwidth);
 			while (i < tab->minwidth)
-	if (i != -1)
-				tab->tl += ft_putchar(str[i++]);
+				if (i != -1)
+					tab->tl += ft_putchar(str[i++]);
 		}
 		else if (tab->maxwidth < len && tab->minwidth >= len)
-				tab->tl += ft_putstr(str);
-
+			tab->tl += ft_putstr(str);
 	}
 }
 
-int ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
-	int i;
+	int	i;
 
-		i = 0;
-		if (!s)
-			return (0);
-		while (s[i])
-				write(1, &s[i++], 1);
-		return (i);
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		write(1, &s[i++], 1);
+	return (i);
 }
 
-int ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-	char *str;
+	char	*str;
 
 	str = s;
-		while (*str)
-				str++;
-		return (str - s);
+	while (*str)
+		str++;
+	return (str - s);
 }
 
-int ft_print_nullstr(t_print *tab)
+int	ft_print_nullstr(t_print *tab)
 {
-	char str[6];
+	char	str[6];
 
 	ft_strcpy(str, "(null)", 6);
 	if (!tab->minwidth && !tab->pnt)

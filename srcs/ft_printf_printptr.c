@@ -6,18 +6,19 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/23 13:52:28 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/30 13:47:58 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void ft_print_ptr(t_print *tab)
+void	ft_print_ptr(t_print *tab)
 {
-	unsigned long long ptr;
-	int len;
+	unsigned long long	ptr;
+	int					len;
 
 	ptr = va_arg(tab->args, unsigned long long);
+	tab->hash = 1;
 	len = ft_hexlen(ptr);
 	if (tab->maxwidth > len)
 	{
@@ -26,11 +27,12 @@ void ft_print_ptr(t_print *tab)
 		else
 			ft_print_ptr_right(tab, len, ptr);
 	}
-	else 
+	else
 	{
 		if (ptr == 0)
 			tab->tl += ft_putstr("(nil)");
-		else {
+		else
+		{
 			tab->tl += ft_putstr("0x");
 			ft_putnbr_hex(ptr, tab);
 			tab->tl += len;
@@ -38,11 +40,10 @@ void ft_print_ptr(t_print *tab)
 	}
 }
 
-void ft_putnbr_hex(unsigned long long n, t_print *tab)
+void	ft_putnbr_hex(unsigned long long n, t_print *tab)
 {
 	if (n >= 16)
 	{
-
 		ft_putnbr_hex(n / 16, tab);
 		ft_putnbr_hex(n % 16, tab);
 	}
@@ -62,9 +63,9 @@ void ft_putnbr_hex(unsigned long long n, t_print *tab)
 	}
 }
 
-int ft_hexlen(unsigned long long n)
+int	ft_hexlen(unsigned long long n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (n == 0)
@@ -77,9 +78,9 @@ int ft_hexlen(unsigned long long n)
 	return (i);
 }
 
-void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr)
+void	ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ptr == 0)
@@ -87,9 +88,8 @@ void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr)
 		tab->tl += ft_putstr("(nil)");
 		while (i < tab->maxwidth - 5)
 			i += ft_print_spaces(tab);
-
 	}
-	else 
+	else
 	{
 		if (tab->upper)
 			tab->tl += ft_putstr("0X");
@@ -102,33 +102,29 @@ void ft_print_ptr_left(t_print *tab, int len, unsigned long long ptr)
 	}
 }
 
-void ft_print_ptr_right(t_print *tab, int len, unsigned long long ptr)
+void	ft_print_ptr_right(t_print *tab, int len, unsigned long long ptr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ptr == 0)
+		ft_printptr_nil(tab);
+	else
 	{
-		while (i < tab->maxwidth - 5)
-			i += ft_print_spaces(tab);
-		tab->tl += ft_putstr("(nil)");
-	}
-	else {
 		if (tab->minwidth > len && tab->pnt)
 			while (i < tab->minwidth - (len + 2))
 				i += ft_print_zero(tab);
-		else if (tab->zero) {
+		else if (tab->zero)
+		{
 			while (i < tab->maxwidth - (len + 2))
 				i += ft_print_zero(tab);
 		}
-		else {
+		else
+		{
 			while (i < tab->maxwidth - (len + 2))
 				i += ft_print_spaces(tab);
 		}
-		if (tab->upper && ptr != 0)
-			tab->tl += ft_putstr("0X");
-		else if (ptr != 0)
-			tab->tl += ft_putstr("0x");
+		ft_printhex_hash(tab);
 		ft_putnbr_hex(ptr, tab);
 		tab->tl += len;
 	}

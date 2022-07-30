@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-void ft_reset_str(t_print *tab)
+void	ft_reset_str(t_print *tab)
 {
 	tab->zero = 0;
 	tab->hash = 0;

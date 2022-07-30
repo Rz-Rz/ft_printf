@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-int check_flags(char c)
+int	check_flags(char c)
 {
 	if (c == 'c')
 		return (1);
@@ -32,7 +32,7 @@ int check_flags(char c)
 		return (1);
 	else if (c == '%')
 		return (1);
-	else 
+	else
 		return (0);
 }
 
@@ -54,9 +54,9 @@ void	*ft_memset(char *s, int c, size_t n)
 	return (s);
 }
 
-char *ft_strnew(size_t size)
+char	*ft_strnew(size_t size)
 {
-	char *str;
+	char	*str;
 
 	str = (char *)malloc(sizeof(char) * (size + 1));
 	if (str == NULL)
@@ -65,9 +65,9 @@ char *ft_strnew(size_t size)
 	return (str);
 }
 
-void ft_strcpy(char *dst, const char *src, int n)
+void	ft_strcpy(char *dst, const char *src, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (src[i] && i < n)

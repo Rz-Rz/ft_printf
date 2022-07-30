@@ -12,9 +12,9 @@
 
 #include "../ft_printf.h"
 
-void ft_print_char(t_print *tab)
+void	ft_print_char(t_print *tab)
 {
-	char a;
+	char	a;
 
 	a = va_arg(tab->args, int);
 	if (tab->zero)
@@ -28,23 +28,23 @@ void ft_print_char(t_print *tab)
 		tab->maxwidth--;
 		tab->tl += ft_putchar(a);
 		ft_strwidth(tab, tab->maxwidth);
-		return;
+		return ;
 	}
 	else if (!tab->dash && tab->maxwidth)
 	{
 		tab->maxwidth--;
 		ft_strwidth(tab, tab->maxwidth);
 		tab->tl += ft_putchar(a);
-		return;
+		return ;
 	}
 	tab->tl += ft_putchar(a);
 }
 
-void ft_strwidth(t_print *tab, int max)
+void	ft_strwidth(t_print *tab, int max)
 {
-	int i;
-	int j;
-	char *str;
+	int		i;
+	int		j;
+	char	*str;
 
 	i = 0;
 	j = 0;
@@ -66,7 +66,7 @@ void ft_strwidth(t_print *tab, int max)
 	free(str);
 }
 
-int ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	return	(write(1, &c, 1));
+	return (write(1, &c, 1));
 }

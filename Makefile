@@ -6,7 +6,7 @@
 #    By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/28 11:11:35 by kdhrif            #+#    #+#              #
-#    Updated: 2022/07/29 16:25:28 by kdhrif           ###   ########.fr        #
+#    Updated: 2022/07/30 14:10:08 by kdhrif           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS = srcs/ft_conversion.c srcs/ft_printf.c srcs/ft_printf_flags.c \
        srcs/ft_printf_percent.c srcs/ft_printf_printchar.c srcs/ft_printf_printhex.c \
        srcs/ft_printf_printint.c srcs/ft_printf_printptr.c srcs/ft_printf_printstr.c \
        srcs/ft_printf_uint.c srcs/ft_printf_utils.c srcs/ft_types.c srcs/ft_reset.c \
-       srcs/ft_printint_norm.c srcs/ft_printf_flags2.c srcs/ft_printf_norm.c 
+       srcs/ft_printint_norm.c srcs/ft_printf_flags2.c srcs/ft_printf_norm.c \
+       srcs/ft_printf_flags3.c srcs/ft_printf_utils2.c
 OBJ = $(SRCS:%.c=%.o)
 OBJF = .cache_exists
 

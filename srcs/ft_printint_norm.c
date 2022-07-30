@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-void ft_printint_checker(t_print *tab, int* nb, int* len)
+void	ft_printint_checker(t_print *tab, int *nb, int *len)
 {
 	if (*nb == 0 && tab->pnt && !tab->minwidth)
 		*len = 0;
@@ -34,22 +34,20 @@ void ft_printint_checker(t_print *tab, int* nb, int* len)
 		tab->maxwidth--;
 }
 
-
-void ft_printflags(t_print *tab, int nb)
+void	ft_printflags(t_print *tab, int nb)
 {
-		if (nb < 0)
-			ft_print_minus(tab);
-		if (tab->sign && !tab->is_neg)
-			ft_print_plus(tab);
-		if (tab->space_flag && !tab->is_neg)
-			ft_print_spaceflag(tab);
+	if (nb < 0)
+		ft_print_minus(tab);
+	if (tab->sign && !tab->is_neg)
+		ft_print_plus(tab);
+	if (tab->space_flag && !tab->is_neg)
+		ft_print_spaceflag(tab);
 }
 
-void ft_printhex_flags(t_print *tab, int nb)
+void	ft_printhex_flags(t_print *tab, int nb)
 {
 	if (tab->space_flag && !tab->is_neg)
 		ft_print_spaceflag(tab);
 	if (tab->hash && nb != 0)
 		ft_printhex_hash(tab);
-
 }

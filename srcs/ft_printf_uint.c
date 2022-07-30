@@ -12,10 +12,10 @@
 
 #include "../ft_printf.h"
 
-void ft_print_uint(t_print *tab)
+void	ft_print_uint(t_print *tab)
 {
-	int len;
-	unsigned int nb;
+	int				len;
+	unsigned int	nb;
 
 	nb = va_arg(tab->args, unsigned int);
 	len = ft_uintlen(nb);
@@ -25,7 +25,8 @@ void ft_print_uint(t_print *tab)
 		tab->zero = 0;
 	if (tab->sign)
 		tab->minwidth--;
-	if ((tab->maxwidth > 0 && tab->maxwidth > len) || (tab->minwidth > 0 && tab->minwidth > len))
+	if ((tab->maxwidth > 0 && tab->maxwidth > len) || (tab->minwidth > 0
+			&& tab->minwidth > len))
 	{
 		if (tab->dash)
 			ft_print_uint_left(tab, nb, len);
@@ -36,13 +37,12 @@ void ft_print_uint(t_print *tab)
 		ft_putunbr(nb, tab);
 }
 
-
-void ft_putunbr(unsigned int nb, t_print *tab)
+void	ft_putunbr(unsigned int nb, t_print *tab)
 {
 	if (tab->sign == 1 && !tab->is_neg)
 	{
 		tab->tl += ft_putchar('+');
-		tab->sign--; 
+		tab->sign--;
 	}
 	if (tab->space_flag == 1 && !tab->is_neg)
 	{
@@ -53,20 +53,20 @@ void ft_putunbr(unsigned int nb, t_print *tab)
 	{
 		if (tab->maxwidth > 0)
 			ft_print_spaces(tab);
-		return;
+		return ;
 	}
 	if (nb >= 10)
 	{
 		ft_putunbr(nb / 10, tab);
 		tab->tl += ft_putchar(nb % 10 + '0');
 	}
-	else 
+	else
 		tab->tl += ft_putchar(nb + '0');
 }
 
-int ft_uintlen(unsigned int nb)
+int	ft_uintlen(unsigned int nb)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (nb == 0)
@@ -79,12 +79,12 @@ int ft_uintlen(unsigned int nb)
 	return (len);
 }
 
-void ft_print_uint_left(t_print *tab, unsigned int nb, int len)
+void	ft_print_uint_left(t_print *tab, unsigned int nb, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if (tab->minwidth > len) 
+	if (tab->minwidth > len)
 	{
 		while (i < tab->minwidth - len)
 			i += ft_print_zero(tab);
@@ -93,8 +93,8 @@ void ft_print_uint_left(t_print *tab, unsigned int nb, int len)
 		while (i < tab->maxwidth - tab->minwidth)
 			i += ft_print_spaces(tab);
 	}
-	else {
-
+	else
+	{
 		ft_putunbr(nb, tab);
 		if (tab->zero || (tab->pnt && tab->minwidth != 0))
 		{
@@ -111,12 +111,12 @@ void ft_print_uint_left(t_print *tab, unsigned int nb, int len)
 	}
 }
 
-void ft_print_uint_right(t_print *tab, unsigned int nb, int len)
+void	ft_print_uint_right(t_print *tab, unsigned int nb, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if (tab->minwidth > len) 
+	if (tab->minwidth > len)
 	{
 		while (i < tab->maxwidth - tab->minwidth)
 			i += ft_print_spaces(tab);
@@ -125,10 +125,10 @@ void ft_print_uint_right(t_print *tab, unsigned int nb, int len)
 			i += ft_print_zero(tab);
 		ft_putunbr(nb, tab);
 	}
-	else {
+	else
+	{
 		if (tab->zero || (tab->pnt && tab->minwidth != 0))
 		{
-
 			if (tab->pnt && tab->minwidth != 0)
 				while (i < tab->minwidth - (len))
 					i += ft_print_zero(tab);

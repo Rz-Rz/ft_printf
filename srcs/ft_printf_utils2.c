@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_types.c                                         :+:      :+:    :+:   */
+/*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/04 17:32:53 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/06/11 21:07:06 by kdhrif           ###   ########.fr       */
+/*   Created: 2022/07/30 14:07:10 by kdhrif            #+#    #+#             */
+/*   Updated: 2022/07/30 14:07:26 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf.h"
+#include "../ft_printf.h"
 
-int	ft_isnum(char c)
+int	ft_strlen(char *s)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+	char	*str;
+
+	str = s;
+	while (*str)
+		str++;
+	return (str - s);
 }
