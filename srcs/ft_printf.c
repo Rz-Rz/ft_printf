@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/29 16:32:42 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/29 18:51:48 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 		j = 0;
 		while (!check_flags(format[i]))
 		{
-			if (format[i] == '.' && i++)
-				tab->pnt = 1;
+			i = ft_printf_checkflags(tab, i, format);
 			if (ft_isnum(format[i]))
 			{
 				if (format[i] == '0' && (format[i - 1] == '%' || format[i - 1] == '+' || format[i - 1] == ' ' || format[i - 1] == '#') && i++)
@@ -85,24 +84,8 @@ int ft_eval_format(t_print *tab, const char *format, int i)
 					tab->maxwidth = ft_atoi(nb);
 				}
 				if (format[i] == '.' || tab->pnt)
-				{
-					j = 0;
-					ft_bzero(nb, 11);
-					while(ft_isnum(format[i]))
-						nb[j++] = format[i++];
-					tab->minwidth = ft_atoi(nb);
-				}
+					i = ft_printf_checkflagint(tab, i, nb, format);
 			}
-			if (format[i] == '-' && i++)
-				tab->dash = 1;
-			if (format[i] == '0' && i++)
-				tab->zero = 1;
-			if (format[i] == ' ' && i++)
-				tab->space_flag = 1;
-			if (format[i] == '+' && i++)
-				tab->sign = 1;
-			if (format[i] == '#' && i++)
-				tab->hash = 1;
 		}
 		choose_conversion(tab, format, i);
 		return (i);
