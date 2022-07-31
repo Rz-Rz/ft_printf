@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:29:33 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/30 16:15:25 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/31 21:13:01 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,9 @@ void	ft_printstr_right(t_print *tab, char *str, int len)
 
 int	ft_putstr(char *s)
 {
-	int	i;
-
-	i = 0;
 	if (!s)
 		return (0);
-	while (s[i])
-		write(1, &s[i++], 1);
-	return (i);
+	return (write(1, s, ft_strlen(s)));
 }
 
 int	ft_print_nullstr(t_print *tab)

@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:54:19 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/20 18:37:58 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/31 17:51:31 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	ft_strwidth(t_print *tab, int max)
 
 	i = 0;
 	j = 0;
+	if (max < 0)
+		max = 0;
 	str = ft_strnew(max);
 	while (i < max)
 	{

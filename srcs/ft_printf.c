@@ -6,7 +6,7 @@
 /*   By: kdhrif <kdhrif@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 17:19:03 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/30 16:20:45 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/31 21:15:39 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,15 +108,17 @@ void	choose_conversion(t_print *tab, const char *format, int i)
 	ft_initialise_tab(tab, 0);
 }
 
-/* #include <stdio.h> */
+#include <stdio.h>
 
-/* int main() */
-/* { */
-/* 	int res = 0; */
-/* 	int res2 = 0; */
-/* 	char* str = NULL; */
-/* 	res = ft_printf("%#7x\n", 33); */
-/* 	res2 = printf("%#7x\n", 33); */
-/* 	printf("res = %d, res2 = %d", res, res2); */
-/* 	return (0); */
-/* } */
+int main()
+{
+	int res = 0;
+	int res2 = 0;
+	char* str = NULL;
+	res = ft_printf(" %.1s %.2s %.3s %.4s ", " - ", "", "4", "");
+	ft_printf("\n");
+	res2 = printf(" %.1s %.2s %.3s %.4s ", " - ", "", "4", "");
+	printf("\n");
+	printf("res = %d, res2 = %d", res, res2);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: kdhrif <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:25:48 by kdhrif            #+#    #+#             */
-/*   Updated: 2022/07/30 13:47:58 by kdhrif           ###   ########.fr       */
+/*   Updated: 2022/07/31 15:17:15 by kdhrif           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_print_ptr(t_print *tab)
 {
-	unsigned long long	ptr;
-	int					len;
+	unsigned long long	ptr; int					len;
 
 	ptr = va_arg(tab->args, unsigned long long);
 	tab->hash = 1;
