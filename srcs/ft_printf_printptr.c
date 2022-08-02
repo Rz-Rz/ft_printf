@@ -14,7 +14,8 @@
 
 void	ft_print_ptr(t_print *tab)
 {
-	unsigned long long	ptr; int					len;
+	unsigned long long	ptr;
+	int					len;
 
 	ptr = va_arg(tab->args, unsigned long long);
 	tab->hash = 1;
